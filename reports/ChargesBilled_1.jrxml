@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f175578f-11fa-4ce3-8986-23b8396ee733">
+    <property name="ireport.zoom" value="2.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="StudentId" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SY" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SY_Display" class="java.lang.String"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT * FROM dcaa_databse.category_department;]]>
+    </queryString>
+    <field name="idCategory_Department" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Department_Name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Description" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="createtime" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="User" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="85" splitType="Stretch">
+            <staticText>
+                <reportElement x="123" y="0" width="357" height="32" uuid="18d86649-89be-48ae-a728-9634e9d3510d"/>
+                <textElement>
+                    <font fontName="Consolas" size="20"/>
+                </textElement>
+                <text><![CDATA[Digos Central Adventist Academy]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="176" y="44" width="201" height="15" uuid="63a78ea8-4deb-4694-930e-c4ca9eaacf85"/>
+                <text><![CDATA[ digoscentral.adventistacademy@yahoo.com]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="17" y="64" width="59" height="20" uuid="c4cf84b3-e747-48f4-9a3d-855ab9c9345f"/>
+                <text><![CDATA[School Year:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="198" y="59" width="156" height="25" uuid="f9a914a3-0122-41e8-a983-f100ebd1e15a"/>
+                <textElement>
+                    <font fontName="Consolas" size="18"/>
+                </textElement>
+                <text><![CDATA[Student Journal]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="206" y="29" width="148" height="15" uuid="ff2fe04f-0efa-4501-9cca-7f5592d54eda"/>
+                <text><![CDATA[Lapu-Lapu Extension, Digos City]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="76" y="64" width="110" height="20" uuid="d61c21e9-3d65-4ad6-9ddc-c030b91ecad9"/>
+                <textFieldExpression><![CDATA[$P{SY_Display}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="48" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="159" height="32" uuid="1cf6d118-466e-4838-b63c-5c7efe22fa5d"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Department Name]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="159" y="0" width="297" height="32" uuid="539e12d4-b5cc-48e8-b005-ef548fe74c75"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Department_Name}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement x="0" y="32" width="555" height="16" uuid="34b09e96-9519-4d85-9a73-1dc0fad0b060"/>
+                <subreportParameter name="Department_ID">
+                    <subreportParameterExpression><![CDATA[$F{idCategory_Department}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="SY">
+                    <subreportParameterExpression><![CDATA[$P{SY}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="SUBREPORT_DIR">
+                    <subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="SY_Display">
+                    <subreportParameterExpression><![CDATA[$P{SY_Display}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="StudentId"/>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Charges_Category.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </detail>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>
