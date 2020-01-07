@@ -40,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
     Activity_Log activity_Log;
     boolean Registrar = false, Princiap = true;
     DBConnection connection;
+    About about = null;
 
     /**
      * Creates new form MainFrame
@@ -67,6 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -111,8 +113,12 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuViewing = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuFinance = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem23 = new javax.swing.JMenuItem();
 
         jMenuItem6.setText("jMenuItem6");
+
+        jMenuItem22.setText("jMenuItem22");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Digos Central Adventist Academy Billing and Management System");
@@ -457,6 +463,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuFinance.setText("Finance");
         jMenuBar1.add(jMenuFinance);
+
+        jMenu4.setText("About");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem23.setText("About");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem23);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -916,6 +939,20 @@ public class MainFrame extends javax.swing.JFrame {
         connection.ChangeIP();
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        if (about == null) {
+            about = new About();
+            about.setBounds(348, 164, 700, 329);
+            about.setVisible(true);
+        } else {
+            about.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -991,6 +1028,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCashar;
     private javax.swing.JMenu jMenuFinance;
@@ -1008,6 +1046,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
