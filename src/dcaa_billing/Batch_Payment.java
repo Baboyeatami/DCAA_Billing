@@ -106,10 +106,10 @@ public class Batch_Payment extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        PostingDate = new com.toedter.calendar.JDateChooser();
         SY = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        PostingDate = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -139,6 +139,8 @@ public class Batch_Payment extends javax.swing.JFrame {
 
         jLabel3.setText("Batch Payment");
 
+        PostingDate.setDateFormatString("MMMM d, yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,8 +149,8 @@ public class Batch_Payment extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PostingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(PostingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(SY, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,7 +459,7 @@ public class Batch_Payment extends javax.swing.JFrame {
                 ps = c.prepareStatement("Select Amount,Fee_Charges_idFee_Charges,School_Year_idSchool_Year from billing where ReferenceNo='" + SelectedPayments.get(i) + "'");
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                    ps = c.prepareStatement("Insert into invoice (Value, Particulars, Category_of_charges_idCategory_of_charges, Student_Info_idStudent_Info, OrNum, DATE, School_Year_idSchool_Year, UseAccounts_idUseAccounts)values" + "('" + Payment.get(i) + "','" + SelectedPayments.get(i) + "','" + rs.getString(2) + "','" + StudentID.get(i) + "','" + String.format("%010d", Integer.parseInt(ORNumber.get(i))) + "','" + dateString + "','" + SchoolY.get(i) + "','" + Userid + "')");
+                    ps = c.prepareStatement("Insert into invoice (Value, Particulars, Category_of_charges_idCategory_of_charges, Student_Info_idStudent_Info, OrNum, DATE, School_Year_idSchool_Year, UseAccounts_idUseAccounts)values" + "('" + Payment.get(i) + "','" + SelectedPayments.get(i) + "','" + rs.getString(2) + "','" + StudentID.get(i) + "','" + ORNumber.get(i) + "','" + dateString + "','" + SchoolY.get(i) + "','" + Userid + "')");
                     ps.execute();
 
                 }
@@ -465,8 +467,7 @@ public class Batch_Payment extends javax.swing.JFrame {
                 Activity_log(SelectedPayments.get(i), ORNumber.get(i));
 
             } catch (SQLException ex) {
-                Logger.getLogger(Batch_Payment.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showConfirmDialog(this, "Invalid Input on Data");
             }
 
         }
