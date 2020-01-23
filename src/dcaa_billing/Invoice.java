@@ -1517,7 +1517,9 @@ public class Invoice extends javax.swing.JFrame {
             ORnum.setText("Official Receipt No." + String.format("%010d", OrNumber));
 
         } catch (SQLException ex) {
-
+            JOptionPane.showMessageDialog(this, "Please load Manually the OR number");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please load Manually the OR number");
         }
 
     }

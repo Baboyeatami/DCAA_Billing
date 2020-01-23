@@ -172,6 +172,10 @@ public class Payment_ORnum extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Invalid Transaction");
         } else if (Payment.getText().equals("") && ORNum.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Invalid Transaction");
+
+        } else if (Payment.getText().equals("") && ORNum.getText().length() > 11 || ORNum.getText().length() > 10) {
+            JOptionPane.showMessageDialog(this, "Invalid Transaction to many characters");
+
         } else {
 
             Transfer();

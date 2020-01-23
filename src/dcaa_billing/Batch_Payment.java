@@ -467,7 +467,7 @@ public class Batch_Payment extends javax.swing.JFrame {
                 Activity_log(SelectedPayments.get(i), ORNumber.get(i));
 
             } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(this, "Invalid Input on Data");
+                JOptionPane.showMessageDialog(this, ex);
             }
 
         }
