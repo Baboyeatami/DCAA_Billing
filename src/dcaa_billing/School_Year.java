@@ -33,6 +33,7 @@ public class School_Year extends javax.swing.JInternalFrame {
     JPopupMenu menu = new JPopupMenu();
     String SYid;
     School_Year main = this;
+    int userID;
 
     /**
      * Creates new form StudentInfo
@@ -47,6 +48,12 @@ public class School_Year extends javax.swing.JInternalFrame {
                     add_School_Year = new Add_School_Year();
                     add_School_Year.setupdatemode(true, SYid, main);
                     add_School_Year.setVisible(true);
+                    System.out.println("Update mode");
+                } else {
+                    add_School_Year.setupdatemode(true, SYid, main);
+                    add_School_Year.setVisible(true);
+                    System.out.println("Update mode");
+
                 }
 
             }
@@ -156,7 +163,13 @@ public class School_Year extends javax.swing.JInternalFrame {
 
         if (add_School_Year == null) {
             add_School_Year = new Add_School_Year();
+            add_School_Year.userid = userID;
+            add_School_Year.main = this;
             add_School_Year.setVisible(true);
+        } else {
+            add_School_Year.setVisible(true);
+            add_School_Year.main = this;
+            add_School_Year.setNormalMode(false, this);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -67,11 +67,11 @@
           <Font name="Dialog" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Software Version 50.0"/>
+        <Property name="text" type="java.lang.String" value="Software Version 50.0.1"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="270" y="110" width="-1" height="47"/>
+          <AbsoluteConstraints x="320" y="110" width="-1" height="47"/>
         </Constraint>
       </Constraints>
     </Component>

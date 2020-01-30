@@ -24,6 +24,7 @@ public class Add_School_Year extends javax.swing.JFrame {
     boolean update;
     String SYid;
     School_Year main;
+    int userid;
 
     /**
      * Creates new form Add_School_Year
@@ -132,6 +133,7 @@ public class Add_School_Year extends javax.swing.JFrame {
                 dispose();
             } else {
                 add_schoolYear();
+                main.LoadSTYdata();
 
             }
         }
@@ -186,6 +188,14 @@ public class Add_School_Year extends javax.swing.JFrame {
 
     }
 
+    void setNormalMode(boolean mode, School_Year cc) {
+
+        update = mode;
+        main = cc;
+        jButton4.setText("Add SY");
+
+    }
+
     void loadSYdata_to_update() {
         try {
             DBConnection.init();
@@ -213,10 +223,12 @@ public class Add_School_Year extends javax.swing.JFrame {
             PreparedStatement ps;
             ResultSet rs = null;
 
-            ps = c.prepareStatement("Update school_year set School_Year='" + SY.getText() + "' ,Semester='" + Sem.getText() + "' where  idSchool_Year='" + SYid + "'");
+            ps = c.prepareStatement("Update school_year set School_Year='" + SY.getText() + "' ,Semester='" + Sem.getText() + "',User='" + userid + "' where  idSchool_Year='" + SYid + "'");
             ps.execute();
             JOptionPane.showMessageDialog(this, "Changes saved!");
 
+            SY.setText("");
+            Sem.setText("");
         } catch (SQLException ex) {
             Logger.getLogger(Add_School_Year.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -237,10 +249,13 @@ public class Add_School_Year extends javax.swing.JFrame {
 
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
-            ps = c.prepareStatement("Insert into school_year (School_Year,Semester,createtime,User)values" + "('" + SY.getText() + "','" + Sem.getText() + "','" + timeStamp + "','100')");
+            ps = c.prepareStatement("Insert into school_year (School_Year,Semester,createtime,User)values" + "('" + SY.getText() + "','" + Sem.getText() + "','" + timeStamp + "','" + userid + "')");
             ps.execute();
 
             JOptionPane.showMessageDialog(this, "Scholl Year Successfully Added!");
+            SY.setText("");
+            Sem.setText("");
+
             dispose();
 
         } catch (Exception e) {

@@ -608,6 +608,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (school_Year == null) {
             school_Year = new School_Year();
+            school_Year.userID = User;
             DesktopPane.add(school_Year);
             school_Year.show();
 
