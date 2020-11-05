@@ -117,7 +117,7 @@
         </band>
     </detail>
     <summary>
-        <band height="22" splitType="Stretch">
+        <band height="126" splitType="Stretch">
             <line>
                 <reportElement x="5" y="0" width="550" height="1" uuid="7a20c629-ae06-4a30-b597-d02777ede24e"/>
             </line>
@@ -129,6 +129,21 @@
                 <reportElement x="396" y="1" width="159" height="20" uuid="62869400-ce29-48f1-91ac-b0654e7e5959"/>
                 <textFieldExpression><![CDATA[$P{Sum}]]></textFieldExpression>
             </textField>
+            <staticText>
+                <reportElement x="55" y="21" width="86" height="20" uuid="2d6c1f92-81b4-4c71-9e8d-5a7505f6efb0"/>
+                <text><![CDATA[Certified Correct:                  ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="27" y="65" width="222" height="20" uuid="b493ae5b-18b9-41f4-9cdb-8fad48da0e12"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Loudice Joyce A. Oliverio, CPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="55" y="85" width="71" height="20" uuid="29c23137-a6ae-499b-bce4-9a745c74b858"/>
+                <text><![CDATA[VP for finance]]></text>
+            </staticText>
         </band>
     </summary>
 </jasperReport>
