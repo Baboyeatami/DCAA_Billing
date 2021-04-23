@@ -54,7 +54,7 @@ public class About extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Software Version 50.0.1");
+        jLabel4.setText("Software Version 50.0.8");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, 47));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ACCOUNTS_RECEIVABLES_subreport1" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b3e230a7-46ac-44d7-a8a7-c976a70ffa86">
+    <property name="ireport.zoom" value="4.0"/>
+    <property name="ireport.x" value="1046"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="studentId" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SY" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[Select SUM(Amount) from Billing where Student_Info_idStudent_Info =$P{studentId} and  School_Year_idSchool_Year = $P{SY}]]>
+    </queryString>
+    <field name="SUM(Amount)" class="java.lang.Double"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="309" height="20" uuid="fd360726-238a-4008-9dfe-80fb6fc2ec83"/>
+                <textElement>
+                    <font fontName="Calibri"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{SUM(Amount)}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

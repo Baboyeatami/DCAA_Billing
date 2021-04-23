@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ACCOUNTS_RECEIVABLES_subReport_names" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0f03b875-d69e-44c8-b285-3c3c3279d1cd">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="493"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="id" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[Select  * from Student_info where id=$P{id}]]>
+    </queryString>
+    <field name="idStudent_Info" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="id" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="F_name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="M_name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="L_name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Name_extention" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Birthday" class="java.sql.Date">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="BirthPlace" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Sex" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Status" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="GradeLevel" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Religion" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="create_time" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="update_time" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="created_by_user" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Address" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="MotherName" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="fatherName" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Contact" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="15" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="87" height="14" uuid="9f7396d1-1c0f-4502-92a8-b312daae2f92"/>
+                <textElement textAlignment="Center">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="87" y="0" width="66" height="14" uuid="9a1d45ab-97cc-4fa4-a3f5-2efedb7db566"/>
+                <textElement textAlignment="Right">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{F_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="153" y="0" width="65" height="14" uuid="f7a305d5-54ed-462a-aec4-0aca143fe6e8"/>
+                <textElement textAlignment="Center">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{M_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="218" y="0" width="100" height="14" uuid="0fd254f1-3d21-446b-8cb2-1a4afc159eae"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{L_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="318" y="0" width="100" height="14" uuid="a6da6583-6953-47bd-ae05-7ebb5e8002ce"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{GradeLevel}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

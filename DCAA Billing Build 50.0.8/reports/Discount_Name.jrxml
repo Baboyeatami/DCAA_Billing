@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="95dc2f79-d227-4a8c-8958-6bd49b27a98c">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="DiscountID" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT idDiscounts, Discount_Name  FROM dcaa_databse.discounts where idDiscounts=$P{DiscountID}]]>
+    </queryString>
+    <field name="idDiscounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Discount_Name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="15" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="38" height="15" uuid="fa308b1c-86d5-4008-a41a-7b5e37a7eeaf"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idDiscounts}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="38" y="0" width="139" height="15" uuid="bd912884-b43a-4e49-8b22-165bfaed9585"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Discount_Name}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

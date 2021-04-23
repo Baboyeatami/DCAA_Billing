@@ -129,6 +129,12 @@ public class Statements extends javax.swing.JInternalFrame {
             m.put("Total_Bill", Tuition.getText());
             m.put("Total_Payment", Payment.getText());
             m.put("Total_Balance", TotalBalance.getText());
+
+            int OP = JOptionPane.showConfirmDialog(this, "Enter Signatory details ?", "Signatory", JOptionPane.YES_NO_OPTION);
+            if (OP == 0) {
+                m.put("Signatury_Name", JOptionPane.showInputDialog(this, "Enter Signatory Name"));
+            }
+
             m.put("SUBREPORT_DIR", Location);
 
             JP = JasperFillManager.fillReport(JR, m, DBConnection.getConnection());
@@ -222,7 +228,7 @@ public class Statements extends javax.swing.JInternalFrame {
             Connection c = DBConnection.getConnection();
             PreparedStatement ps;
             ResultSet rs = null;
-            ps = c.prepareStatement("Select idschool_year,School_Year,Semester from school_year");
+            ps = c.prepareStatement("Select idschool_year,School_Year,Semester from school_year order by idschool_year desc");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Sydisplay.add(rs.getString(2) + "-" + rs.getString(3));
@@ -290,7 +296,7 @@ public class Statements extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(102, 102, 102));
         setClosable(true);
-        setTitle("STATEMENT OF ACCOUTS");
+        setTitle("Statement of Accounts");
         setMaximumSize(new java.awt.Dimension(1200, 550));
         setMinimumSize(new java.awt.Dimension(1100, 550));
         setPreferredSize(new java.awt.Dimension(1100, 550));
@@ -439,7 +445,6 @@ public class Statements extends javax.swing.JInternalFrame {
         Tuition.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Tuition.setForeground(new java.awt.Color(0, 0, 0));
         Tuition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Tuition.setText("1000.0000");
         Tuition.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(Tuition, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 240, 30));
 
@@ -453,7 +458,6 @@ public class Statements extends javax.swing.JInternalFrame {
         Payment.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Payment.setForeground(new java.awt.Color(0, 153, 102));
         Payment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Payment.setText("1000.0000");
         Payment.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(Payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 230, 30));
 
@@ -467,7 +471,6 @@ public class Statements extends javax.swing.JInternalFrame {
         TotalBalance.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         TotalBalance.setForeground(new java.awt.Color(204, 0, 51));
         TotalBalance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TotalBalance.setText("1000.0000");
         TotalBalance.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(TotalBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 240, 30));
 

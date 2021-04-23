@@ -126,14 +126,14 @@ public class Student_List extends javax.swing.JInternalFrame {
                         studentInfo = new StudentInfo_new();
                         studentInfo.UserId = UserID;
                         main.DesktopPane.add(studentInfo);
-                        studentInfo.setBounds(324, 1, 560, 540);
+                        studentInfo.setBounds(56, 7, 1067, 535);
                         studentInfo.loadInformation(StudentId);
                         studentInfo.setVisible(true);
 
                     } else {
                         main.DesktopPane.add(studentInfo);
                         studentInfo.UserId = UserID;
-                        studentInfo.setBounds(324, 1, 560, 540);
+                        studentInfo.setBounds(56, 7, 1067, 535);
                         studentInfo.loadInformation(StudentId);
                         studentInfo.setVisible(true);
                     }
@@ -229,6 +229,7 @@ public class Student_List extends javax.swing.JInternalFrame {
         RGrade = new javax.swing.JRadioButton();
         Rstatus = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(22, 27, 34));
         setClosable(true);
         setIconifiable(true);
         setTitle("Billing");
@@ -346,9 +347,10 @@ public class Student_List extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15))
         );
 
-        Table1.setBackground(new java.awt.Color(255, 255, 255));
-        Table1.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        Table1.setForeground(new java.awt.Color(51, 51, 51));
+        Table1.setBackground(new java.awt.Color(46, 46, 56));
+        Table1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Table1.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        Table1.setForeground(new java.awt.Color(255, 255, 255));
         Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -360,7 +362,10 @@ public class Student_List extends javax.swing.JInternalFrame {
                 "Student ID", "Name", "Grade", "Status"
             }
         ));
-        Table1.setRowHeight(20);
+        Table1.setGridColor(new java.awt.Color(41, 41, 49));
+        Table1.setSelectionBackground(new java.awt.Color(0, 153, 255));
+        Table1.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        Table1.setShowHorizontalLines(true);
         Table1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Table1MouseClicked(evt);
@@ -368,12 +373,13 @@ public class Student_List extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(Table1);
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(13, 17, 23));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        StudentID.setBackground(new java.awt.Color(255, 255, 255));
-        StudentID.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        StudentID.setForeground(new java.awt.Color(0, 0, 0));
+        StudentID.setBackground(new java.awt.Color(22, 27, 34));
+        StudentID.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        StudentID.setForeground(new java.awt.Color(255, 255, 255));
         StudentID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StudentIDActionPerformed(evt);
@@ -387,17 +393,17 @@ public class Student_List extends javax.swing.JInternalFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Student ID:");
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Search by:");
 
-        SearchCreteria.setBackground(new java.awt.Color(255, 255, 255));
-        SearchCreteria.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        SearchCreteria.setForeground(new java.awt.Color(0, 0, 0));
+        SearchCreteria.setBackground(new java.awt.Color(22, 27, 34));
+        SearchCreteria.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        SearchCreteria.setForeground(new java.awt.Color(255, 255, 255));
         SearchCreteria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Name", "Last Name", "Grade Level", "School Year", " " }));
         SearchCreteria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -412,24 +418,26 @@ public class Student_List extends javax.swing.JInternalFrame {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Enter Keyword:");
 
-        searchKey.setBackground(new java.awt.Color(255, 255, 255));
-        searchKey.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        searchKey.setForeground(new java.awt.Color(0, 0, 0));
+        searchKey.setBackground(new java.awt.Color(22, 27, 34));
+        searchKey.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        searchKey.setForeground(new java.awt.Color(255, 255, 255));
         searchKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchKeyActionPerformed(evt);
             }
         });
 
+        SchoolYear.setBackground(new java.awt.Color(22, 27, 34));
+        SchoolYear.setForeground(new java.awt.Color(255, 255, 255));
         SchoolYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         SchoolYear.setEnabled(false);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("School Year:");
 
         jButton8.setText("Print List");
@@ -542,7 +550,7 @@ public class Student_List extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -584,7 +592,7 @@ public class Student_List extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())

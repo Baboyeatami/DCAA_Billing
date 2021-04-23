@@ -140,7 +140,7 @@ public class Name_Search extends javax.swing.JFrame {
         jLabel1.setText("Search");
 
         Search.setBackground(new java.awt.Color(255, 255, 255));
-        Search.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        Search.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         Search.setForeground(new java.awt.Color(0, 0, 0));
         Search.setNextFocusableComponent(jTable1);
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -178,8 +178,9 @@ public class Name_Search extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jTable1.setBackground(new java.awt.Color(22, 27, 34));
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -199,6 +200,8 @@ public class Name_Search extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

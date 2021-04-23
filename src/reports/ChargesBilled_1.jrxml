@@ -105,6 +105,22 @@
         </band>
     </detail>
     <summary>
-        <band height="42" splitType="Stretch"/>
+        <band height="118" splitType="Stretch">
+            <staticText>
+                <reportElement x="23" y="59" width="153" height="20" uuid="c2057e75-54a3-4b7b-820e-56f252b49e1d"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Loudice Joyce A. Oliverio, CPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="51" y="15" width="86" height="20" uuid="36c64f59-f180-45fe-8c55-42356c39dd30"/>
+                <text><![CDATA[Certified Correct:                  ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="51" y="79" width="71" height="20" uuid="92851edd-6288-4001-9cb1-eb8a37baa0e3"/>
+                <text><![CDATA[VP for finance]]></text>
+            </staticText>
+        </band>
     </summary>
 </jasperReport>

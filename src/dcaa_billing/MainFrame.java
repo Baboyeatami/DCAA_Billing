@@ -41,6 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
     boolean Registrar = false, Princiap = true;
     DBConnection connection;
     About about = null;
+    Student_Status_List status_List;
 
     /**
      * Creates new form MainFrame
@@ -93,6 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -121,18 +123,20 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem22.setText("jMenuItem22");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Digos Central Adventist Academy Billing and Management System");
-        setBackground(new java.awt.Color(102, 102, 102));
+        setTitle("Digos Central Adventist Academy Billing and Management System 50.0.8\n");
+        setBackground(new java.awt.Color(13, 17, 23));
         setBounds(new java.awt.Rectangle(97, 8, 0, 0));
+        setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         setMinimumSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBar1.setBackground(new java.awt.Color(51, 51, 51));
+        jToolBar1.setBackground(new java.awt.Color(36, 37, 38));
         jToolBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204)));
         jToolBar1.setRollover(true);
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setBackground(new java.awt.Color(33, 38, 45));
         jButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("  Add New Student");
         jButton4.setToolTipText("");
         jButton4.setFocusable(false);
@@ -145,8 +149,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton4);
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(33, 38, 45));
         jButton5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText(" Billing and Information");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -158,8 +163,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton5);
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setBackground(new java.awt.Color(33, 38, 45));
         jButton7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText(" Statement of Accounts");
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -171,8 +177,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton7);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(33, 38, 45));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText(" Invoice");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -184,8 +191,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setBackground(new java.awt.Color(33, 38, 45));
         jButton8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText(" User Accounts");
         jButton8.setFocusable(false);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -197,8 +205,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton8);
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setBackground(new java.awt.Color(33, 38, 45));
         jButton9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Accounting");
         jButton9.setFocusable(false);
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -210,7 +219,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton9);
 
+        jButton2.setBackground(new java.awt.Color(33, 38, 45));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Log out");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -254,7 +265,14 @@ public class MainFrame extends javax.swing.JFrame {
         UserLabel.setText("User:Jamie");
         getContentPane().add(UserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 180, 20));
 
+        jMenuBar1.setBackground(new java.awt.Color(36, 37, 38));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("System");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem3.setText("Fees");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -320,6 +338,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem21);
 
+        jMenuItem24.setText("Enrollment Status");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem24);
+
         jMenuItem20.setText("Activity Log");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,10 +356,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Edit");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Shortcuts");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jCheckBoxMenuItem1.setSelected(true);
@@ -392,8 +422,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenuRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         jMenuRegistrar.setText("Registrar");
         jMenuRegistrar.setEnabled(false);
+        jMenuRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem14.setText("Add New Student");
@@ -415,7 +447,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuRegistrar);
 
+        jMenuCashar.setForeground(new java.awt.Color(255, 255, 255));
         jMenuCashar.setText("Cashering");
+        jMenuCashar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jMenuItem16.setText("Billing");
@@ -437,7 +471,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCashar);
 
+        jMenuPrinsipals.setForeground(new java.awt.Color(255, 255, 255));
         jMenuPrinsipals.setText("Principals");
+        jMenuPrinsipals.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem19.setText("Sections");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -449,7 +485,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuPrinsipals);
 
+        jMenuViewing.setForeground(new java.awt.Color(255, 255, 255));
         jMenuViewing.setText("Viewing");
+        jMenuViewing.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem18.setText("Statements");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -461,10 +499,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuViewing);
 
+        jMenuFinance.setForeground(new java.awt.Color(255, 255, 255));
         jMenuFinance.setText("Finance");
+        jMenuFinance.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuBar1.add(jMenuFinance);
 
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("About");
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenu4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu4ActionPerformed(evt);
@@ -954,6 +996,17 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        if (status_List == null) {
+            status_List = new Student_Status_List();
+
+            status_List.setVisible(true);
+
+        } else {
+            status_List.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1049,6 +1102,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

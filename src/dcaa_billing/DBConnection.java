@@ -61,6 +61,7 @@ public class DBConnection {
                 FileReader fr = new FileReader(AppUtil.CONFIG_PATH + File.separator + "IPAddress.ini");
                 BufferedReader br = new BufferedReader(fr);
                 StringBuilder sb = new StringBuilder();
+                System.out.println("");
 
                 while ((IPadd = br.readLine()) != null) {
 

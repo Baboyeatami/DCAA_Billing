@@ -923,7 +923,7 @@ public class Invoice extends javax.swing.JFrame {
             Connection c = DBConnection.getConnection();
             PreparedStatement ps;
             ResultSet rs = null;
-            ps = c.prepareStatement("Select idschool_year,School_Year,Semester from school_year");
+            ps = c.prepareStatement("Select idschool_year,School_Year,Semester from school_year order by idschool_year desc");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Sydisplay.add(rs.getString(2) + "-" + rs.getString(3));
