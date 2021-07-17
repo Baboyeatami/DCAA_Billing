@@ -666,14 +666,14 @@ public class Student_List extends javax.swing.JInternalFrame {
                 studentInfo = new StudentInfo_new();
                 studentInfo.UserId = UserID;
                 main.DesktopPane.add(studentInfo);
-                studentInfo.setBounds(324, 1, 560, 540);
+                studentInfo.setBounds(56, 7, 1067, 535);
                 studentInfo.loadInformation(StudentId);
                 studentInfo.setVisible(true);
 
             } else {
                 main.DesktopPane.add(studentInfo);
                 studentInfo.UserId = UserID;
-                studentInfo.setBounds(324, 1, 560, 540);
+                studentInfo.setBounds(56, 7, 1067, 535);
                 studentInfo.loadInformation(StudentId);
                 studentInfo.setVisible(true);
             }

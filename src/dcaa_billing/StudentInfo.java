@@ -526,7 +526,7 @@ public class StudentInfo extends javax.swing.JInternalFrame {
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel30.setText("Guardians Name:");
+        jLabel30.setText("Guardian's Name:");
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(204, 204, 204));

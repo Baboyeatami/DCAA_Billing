@@ -487,7 +487,7 @@ public class StudentInfo_new extends javax.swing.JInternalFrame {
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setText("Guardians Name:");
+        jLabel30.setText("Guardian's Name:");
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
@@ -551,7 +551,7 @@ public class StudentInfo_new extends javax.swing.JInternalFrame {
                         .addComponent(jLabel34)
                         .addGap(18, 18, 18)
                         .addComponent(G_emp_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
