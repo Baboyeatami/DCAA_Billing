@@ -22,61 +22,57 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Jamie Eduardo Rosal <Jamiewertalmighty@gmail.com>
  */
 public class Select_Discount extends javax.swing.JFrame {
-    DefaultTableModel model=new DefaultTableModel();
-    String discountID=null;
-    StudentBill studentBill=null;
-    JMenuItem Select=new JMenuItem("Select");
-    JPopupMenu menu=new JPopupMenu();
-    Select_Discount main=this; 
+
+    DefaultTableModel model = new DefaultTableModel();
+    String discountID = null;
+    StudentBill studentBill = null;
+    JMenuItem Select = new JMenuItem("Select");
+    JPopupMenu menu = new JPopupMenu();
+    Select_Discount main = this;
+
     /**
      * Creates new form Select_Discount
      */
     public Select_Discount() {
         initComponents();
-        model=(DefaultTableModel) jTable1.getModel();
+
+        model = (DefaultTableModel) jTable1.getModel();
         loadDiscounts();
-       
-        
+
         Select.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-             if ( discountID==null || discountID.equals("") ) {
-              JOptionPane.showMessageDialog(main,"No discount selected");
-        }else{
-              studentBill.discountID = discountID;
-              setVisible(false);
-              studentBill.Computediscount();
-              studentBill.RefreshBill();
-              dispose();
-          }
-            
+
+                if (discountID == null || discountID.equals("")) {
+                    JOptionPane.showMessageDialog(main, "No discount selected");
+                } else {
+                    studentBill.discountID = discountID;
+                    setVisible(false);
+                    studentBill.Computediscount();
+                    studentBill.RefreshBill();
+                    dispose();
+                }
+
             }
         });
-        
+
         menu.add(Select);
-        
+
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    menu.show(e.getComponent(),e.getX(),e.getY());
+                    menu.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
-            
-            
-});
-        
-        
-        
-        
-        
+
+        });
+
     }
 
     /**
@@ -96,6 +92,8 @@ public class Select_Discount extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Select Discount to implemented");
         setBounds(new java.awt.Rectangle(420, 93, 0, 0));
+        setPreferredSize(new java.awt.Dimension(500, 520));
+        setSize(new java.awt.Dimension(535, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,7 +114,7 @@ public class Select_Discount extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 400));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setText("Select Discount");
@@ -128,29 +126,29 @@ public class Select_Discount extends javax.swing.JFrame {
                 Button_Update_SelectActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_Update_Select, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, 150, 40));
+        getContentPane().add(Button_Update_Select, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         System.out.println(String.valueOf(model.getValueAt(jTable1.getSelectedRow(), 0)));
-        discountID=String.valueOf(model.getValueAt(jTable1.getSelectedRow(),0));
-        studentBill.discountID=discountID;
+        discountID = String.valueOf(model.getValueAt(jTable1.getSelectedRow(), 0));
+        studentBill.discountID = discountID;
         System.out.println(studentBill.discountID);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void Button_Update_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_Update_SelectActionPerformed
         // TODO add your handling code here:
-          if ( discountID==null || discountID.equals("") ) {
-              JOptionPane.showMessageDialog(this,"No discount selected");
-        }else{
-              studentBill.discountID = discountID;
-              setVisible(false);
-              studentBill.Computediscount();
-              studentBill.RefreshBill();
-              dispose();
-          }
+        if (discountID == null || discountID.equals("")) {
+            JOptionPane.showMessageDialog(this, "No discount selected");
+        } else {
+            studentBill.discountID = discountID;
+            setVisible(false);
+            studentBill.Computediscount();
+            studentBill.RefreshBill();
+            dispose();
+        }
     }//GEN-LAST:event_Button_Update_SelectActionPerformed
 
     /**
@@ -160,7 +158,7 @@ public class Select_Discount extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -187,34 +185,39 @@ public class Select_Discount extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
-    
-      void loadDiscounts(){
+
+    void loadDiscounts() {
         try {
             model.setRowCount(0);
             DBConnection.init();
             Connection c = DBConnection.getConnection();
             PreparedStatement ps;
             ResultSet rs = null;
+            String Discount, ValueString;
             int idDiscount = 0;
             ps = c.prepareStatement("Select idDiscounts, Discount_Name, Value,Type from discounts");
             rs = ps.executeQuery();
             while (rs.next()) {
-                  model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
+
+                if (rs.getString(4).equals("0")) {
+                    Discount = "Percentage";
+                    ValueString = rs.getString(3) + "%";
+                } else {
+                    Discount = "Fix Value";
+                    ValueString = rs.getString(3) + " Php";
+                }
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2), ValueString, Discount});
             }
             System.out.println("Discounts Loaded");
         } catch (SQLException ex) {
             Logger.getLogger(Discounts.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
+
     }
-      
-       public void setStudentBill(StudentBill a){
-            studentBill=a;
-   } 
+
+    public void setStudentBill(StudentBill a) {
+        studentBill = a;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Button_Update_Select;

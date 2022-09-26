@@ -128,6 +128,7 @@ public class Name_Search extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Search Name");
         setBounds(new java.awt.Rectangle(436, 129, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -412,7 +413,7 @@ public class Name_Search extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name")});
             }
 
         } catch (SQLException ex) {
@@ -435,7 +436,7 @@ public class Name_Search extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name")});
             }
 
         } catch (SQLException ex) {
@@ -458,7 +459,7 @@ public class Name_Search extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name")});
             }
 
         } catch (SQLException ex) {

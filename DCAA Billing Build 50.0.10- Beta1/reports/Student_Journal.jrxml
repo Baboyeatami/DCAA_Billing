@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentJournal" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="214ffd66-b4a9-4b4a-9181-b05c1087606a">
+    <property name="ireport.zoom" value="2.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SY" class="java.lang.String"/>
+    <parameter name="Sum" class="java.lang.String"/>
+    <parameter name="SchoolYEar" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[Select DISTINCT Student_Info_idStudent_Info,School_Year_idSchool_Year from billing]]>
+    </queryString>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="112" splitType="Stretch">
+            <staticText>
+                <reportElement x="222" y="37" width="110" height="20" uuid="ff062dfb-a19e-4081-b83e-72ef98ef0f2c"/>
+                <text><![CDATA[Tel No. (082) 553-3172]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="199" y="69" width="197" height="25" uuid="8040e405-525a-4184-9d61-965c821c889a"/>
+                <textElement>
+                    <font fontName="Consolas" size="18"/>
+                </textElement>
+                <text><![CDATA[Student Journal]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="199" y="26" width="148" height="20" uuid="e22de2f2-4a44-478d-aded-186ac4ca8adb"/>
+                <text><![CDATA[Lapu-Lapu Extension, Digos City]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="174" y="49" width="201" height="20" uuid="52939b21-5c59-41b9-b98c-029a620694d4"/>
+                <text><![CDATA[ digoscentral.adventistacademy@yahoo.com]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="125" y="0" width="357" height="32" uuid="c862cccc-a6b2-4d5e-afa1-790a2ce2c280"/>
+                <textElement>
+                    <font fontName="Consolas" size="20"/>
+                </textElement>
+                <text><![CDATA[Digos Central Adventist Academy]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="108" y="92" width="100" height="20" uuid="88753ff9-4a7d-4913-b537-e5ffc060181a"/>
+                <textFieldExpression><![CDATA[$P{SchoolYEar}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="49" y="92" width="59" height="20" uuid="b620ac23-8a3c-473c-adea-62e1f3fb897c"/>
+                <text><![CDATA[School Year:]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="21" splitType="Stretch">
+            <staticText>
+                <reportElement x="70" y="0" width="48" height="20" uuid="1dbc087a-1b2a-473c-911f-76bec24ebab2"/>
+                <text><![CDATA[Student Id]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="174" y="0" width="62" height="20" uuid="2d4409e4-b621-4c02-ac40-42d4bad5b124"/>
+                <text><![CDATA[Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="299" y="0" width="48" height="20" uuid="8bbb7673-13c1-4026-b09a-da2048d89cb6"/>
+                <text><![CDATA[Gender]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="347" y="0" width="48" height="20" uuid="6535b25f-6632-4d83-970a-a9111dd29551"/>
+                <text><![CDATA[Grade]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="407" y="0" width="75" height="20" uuid="0be20606-a93f-41a0-a5d4-e6938ad3329a"/>
+                <text><![CDATA[Billed Amount]]></text>
+            </staticText>
+            <line>
+                <reportElement x="8" y="18" width="549" height="2" uuid="9f6b4577-6c9c-4156-a989-33fd91f0fba7"/>
+            </line>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="13" splitType="Stretch">
+            <subreport>
+                <reportElement x="46" y="0" width="229" height="12" uuid="a3cefcfa-ea42-47d6-8d2d-ea392652a62c"/>
+                <subreportParameter name="StudentID">
+                    <subreportParameterExpression><![CDATA[$F{Student_Info_idStudent_Info}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Section_List_subreport1_1.jasper"]]></subreportExpression>
+            </subreport>
+            <subreport>
+                <reportElement x="407" y="0" width="148" height="12" uuid="ed4421e3-b3e3-424d-90d9-489f5ac61776"/>
+                <subreportParameter name="SY">
+                    <subreportParameterExpression><![CDATA[$F{School_Year_idSchool_Year}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="id">
+                    <subreportParameterExpression><![CDATA[$F{Student_Info_idStudent_Info}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Student_Journal_subreport2.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement x="8" y="0" width="38" height="12" uuid="f9b8baca-ac50-4304-9b6d-8e2181f33315"/>
+                <textElement>
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="126" splitType="Stretch">
+            <line>
+                <reportElement x="5" y="0" width="550" height="1" uuid="7a20c629-ae06-4a30-b597-d02777ede24e"/>
+            </line>
+            <staticText>
+                <reportElement x="350" y="1" width="46" height="20" uuid="a803963a-9001-4428-8126-e720f19335e2"/>
+                <text><![CDATA[Summary:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="396" y="1" width="159" height="20" uuid="62869400-ce29-48f1-91ac-b0654e7e5959"/>
+                <textFieldExpression><![CDATA[$P{Sum}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="55" y="21" width="86" height="20" uuid="2d6c1f92-81b4-4c71-9e8d-5a7505f6efb0"/>
+                <text><![CDATA[Certified Correct:                  ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="27" y="65" width="222" height="20" uuid="b493ae5b-18b9-41f4-9cdb-8fad48da0e12"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Loudice Joyce A. Oliverio, CPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="55" y="85" width="71" height="20" uuid="29c23137-a6ae-499b-bce4-9a745c74b858"/>
+                <text><![CDATA[VP for finance]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>

@@ -8,27 +8,24 @@
     </parameter>
     <parameter name="Section_Details" class="java.lang.String"/>
     <queryString>
-		<![CDATA[SELECT * FROM dcaa_databse.sectioning;]]>
+		<![CDATA[SELECT id,F_name,M_name,L_name,sex,GradeLevel FROM dcaa_databse.student_info where id IN (Select studentid from  sectioning where section_id='26') Order by L_name]]>
     </queryString>
-    <field name="idSectioning" class="java.lang.Integer">
+    <field name="id" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
-    <field name="SectionGradelevel" class="java.lang.String">
+    <field name="F_name" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
-    <field name="studentid" class="java.lang.String">
+    <field name="M_name" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
-    <field name="section_id" class="java.lang.String">
+    <field name="L_name" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
-    <field name="Sy_id" class="java.lang.String">
+    <field name="sex" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
-    <field name="crearetime" class="java.sql.Timestamp">
-        <fieldDescription><![CDATA[]]></fieldDescription>
-    </field>
-    <field name="user" class="java.lang.String">
+    <field name="GradeLevel" class="java.lang.String">
         <fieldDescription><![CDATA[]]></fieldDescription>
     </field>
     <background>
@@ -79,11 +76,11 @@
                 <text><![CDATA[Student ID]]></text>
             </staticText>
             <staticText>
-                <reportElement x="111" y="3" width="53" height="14" uuid="260210e8-377d-496b-b56d-ae107f34bdb3"/>
+                <reportElement x="111" y="3" width="63" height="14" uuid="260210e8-377d-496b-b56d-ae107f34bdb3"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[First Name]]></text>
+                <text><![CDATA[Last Name,]]></text>
             </staticText>
             <staticText>
                 <reportElement x="318" y="3" width="53" height="14" uuid="f91cd593-59b2-43e4-b694-6f13e9cc5278"/>
@@ -104,31 +101,50 @@
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Middle Name]]></text>
+                <text><![CDATA[First Name]]></text>
             </staticText>
             <staticText>
                 <reportElement x="240" y="3" width="62" height="14" uuid="aa76cadb-eaa1-462c-841d-7a686bf46cf1"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Last Name]]></text>
+                <text><![CDATA[Middle Name]]></text>
             </staticText>
         </band>
     </columnHeader>
     <detail>
         <band height="15" splitType="Stretch">
-            <subreport>
-                <reportElement x="42" y="1" width="502" height="14" uuid="e93574b0-1ab8-4882-87f6-fd53eb25554f"/>
-                <subreportParameter name="StudentID">
-                    <subreportParameterExpression><![CDATA[$F{studentid}]]></subreportParameterExpression>
-                </subreportParameter>
-                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-                <subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"Section_List_subreport1.jasper"]]></subreportExpression>
-            </subreport>
             <textField>
                 <reportElement x="0" y="1" width="42" height="14" uuid="f7e93951-3a81-4743-85bb-2cba79cad9a8"/>
                 <textElement textAlignment="Center"/>
                 <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="50" y="1" width="53" height="13" uuid="12e56bca-dd7b-43d9-8d9f-9dc0dffa5a9f"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="111" y="1" width="63" height="13" uuid="072f244a-9c74-4125-a430-a6c7190a410e"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{L_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="174" y="1" width="62" height="13" uuid="feb16fb1-904e-4ed0-b840-8f71d9b2e67b"/>
+                <textFieldExpression><![CDATA[$F{F_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="240" y="1" width="62" height="13" uuid="e5bd216e-495f-49a1-b4f8-ce299e6f1a52"/>
+                <textFieldExpression><![CDATA[$F{M_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="318" y="1" width="53" height="13" uuid="82358c30-f20e-4291-afca-ac3501e4cf43"/>
+                <textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="397" y="1" width="79" height="13" uuid="0d890333-b138-40f0-a622-53dd4b4bd3cc"/>
+                <textFieldExpression><![CDATA[$F{GradeLevel}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

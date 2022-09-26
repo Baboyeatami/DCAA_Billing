@@ -45,6 +45,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class StudentBill extends javax.swing.JFrame {
 
+    boolean Casher = false;
     String ID = null, idSY = null;
     int count;
     DefaultComboBoxModel SYBoxModel;
@@ -449,7 +450,7 @@ public class StudentBill extends javax.swing.JFrame {
             if (rs.next()) {
                 SQNo.setText(rs.getString(1));
                 StudentID.setText(rs.getString(2));
-                StudentName.setText(rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5));
+                StudentName.setText(rs.getString(5) + ", " + rs.getString(3) + " " + rs.getString(4));
                 ID = rs.getString(2);
 
                 System.out.println(ID + "bill id");
@@ -459,6 +460,14 @@ public class StudentBill extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(StudentBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    void Set_casherMode(boolean mode) {
+        if (mode) {
+            menu.remove(addDiscount);
+            jButton7.setEnabled(false);
         }
 
     }

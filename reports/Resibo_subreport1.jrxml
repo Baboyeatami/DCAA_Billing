@@ -21,7 +21,7 @@
             <textField>
                 <reportElement x="0" y="0" width="100" height="11" uuid="a1ef8455-e51a-4007-9ad4-22b69b704c43"/>
                 <textElement>
-                    <font size="8"/>
+                    <font size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{Fee_Name}]]></textFieldExpression>
             </textField>

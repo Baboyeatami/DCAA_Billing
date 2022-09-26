@@ -51,9 +51,35 @@ public class DCAA_BILLING {
             Logger.getLogger(DCAA_BILLING.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        check_invoice_ramakrs();
         Login aLogin = new Login();
 
         aLogin.setVisible(true);
+
+    }
+
+    static void check_invoice_ramakrs() throws SQLException {
+
+        try {
+            DBConnection.ReadIPaddress();
+            DBConnection.init();
+            PreparedStatement ps;
+            ResultSet rs;
+            Connection c = DBConnection.getConnection();
+            ps = c.prepareStatement("Show columns from invoice where field ='remarks'");
+            rs = ps.executeQuery();
+
+            if (!rs.next()) {
+                ps = c.prepareStatement("ALTER TABLE invoice ADD COLUMN remarks VARCHAR(1555)");
+                ps.execute();
+                System.out.println("Alter table completed ");
+            } else {
+                System.out.println("Remarks coloum exist: no table altered");
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(DCAA_BILLING.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

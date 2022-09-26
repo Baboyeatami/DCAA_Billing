@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="619" pageHeight="266" columnWidth="579" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e13b041-cbba-4833-be50-3e9c8ac5bde1">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="StudentName" class="java.lang.String"/>
+    <parameter name="StudentID" class="java.lang.String"/>
+    <parameter name="Date" class="java.lang.String"/>
+    <parameter name="Department" class="java.lang.String"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <parameter name="Total" class="java.lang.String"/>
+    <parameter name="CashT" class="java.lang.String"/>
+    <parameter name="Change" class="java.lang.String"/>
+    <parameter name="remarks" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[SELECT * FROM dcaa_databse.invoice]]>
+    </queryString>
+    <field name="idINVOICE" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Value" class="java.lang.Double">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Particulars" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Category_of_charges_idCategory_of_charges" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="OrNum" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="DATE" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="UseAccounts_idUseAccounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="80" splitType="Stretch">
+            <textField>
+                <reportElement x="65" y="41" width="117" height="12" uuid="4acad40f-91a8-40df-957a-78e71610e8d0"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{StudentName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="65" y="55" width="117" height="12" uuid="3e6e8e17-af59-49fc-9893-ac60de7d08db"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{StudentID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="186" y="55" width="68" height="12" uuid="a741ac2d-4998-4acb-8e44-3d38296668e4"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Date}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="82" y="68" width="68" height="12" uuid="beccc6ab-4183-4f67-8b5c-2f25816f87e0"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Department}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="389" y="50" width="117" height="12" uuid="a8f8b300-100a-400b-abe8-a1764f5f196f"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{StudentID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="389" y="35" width="117" height="12" uuid="717315bf-0c3d-4e01-9acb-6df4af272fa8"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{StudentName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="404" y="62" width="68" height="12" uuid="2d843a23-c1c5-41dc-bf7c-67e304a6891d"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Department}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="509" y="50" width="68" height="12" uuid="2f81c32c-e5e2-4c1f-95d5-0b2d0c6ceb33"/>
+                <textElement>
+                    <font fontName="Consolas" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Date}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="10" splitType="Stretch">
+            <subreport>
+                <reportElement x="0" y="0" width="133" height="10" uuid="4c133518-fc06-4c7d-bbdf-634edb38dca2"/>
+                <subreportParameter name="IdCategory">
+                    <subreportParameterExpression><![CDATA[$F{Category_of_charges_idCategory_of_charges}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="ORnum"/>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Resibo_subreport1.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement x="445" y="0" width="87" height="10" uuid="661db0ef-fb1b-4cef-8cf2-fe1521946d90"/>
+                <textElement>
+                    <font fontName="Consolas" size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Value}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement x="327" y="0" width="117" height="10" uuid="fbecc771-819d-4161-b313-e834d2ea3e82"/>
+                <subreportParameter name="IdCategory">
+                    <subreportParameterExpression><![CDATA[$F{Category_of_charges_idCategory_of_charges}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="ORnum">
+                    <subreportParameterExpression><![CDATA[$F{OrNum}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Resibo_subreport1.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement x="134" y="0" width="87" height="10" uuid="28e5f71d-aad8-4b4f-bcc7-68f0cf15f58a"/>
+                <textElement>
+                    <font fontName="Consolas" size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Value}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="65">
+            <line>
+                <reportElement x="447" y="1" width="85" height="1" uuid="1fd0cfb1-d479-4e98-a28b-f5fe5a057703"/>
+            </line>
+            <textField>
+                <reportElement x="134" y="0" width="85" height="14" uuid="d9e897bf-be7f-4e5e-8ea2-a49f902aa9c4"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="447" y="2" width="85" height="14" uuid="6883ba0a-0895-4720-9a9d-4ffae4a74c64"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="133" y="14" width="85" height="15" uuid="61da0534-2844-4902-8149-e582f31d4861"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{CashT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="447" y="14" width="85" height="15" uuid="6be0bf59-5ec1-440a-ae75-1b9ef6a9a472"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{CashT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="133" y="29" width="86" height="15" uuid="1e07976d-6dc9-415f-9e1b-85b7592ba6b1"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Change}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="447" y="29" width="85" height="15" uuid="f0bcdf93-b1c7-4cfa-a75a-a4db7d628578"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Change}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="134" y="0" width="86" height="1" uuid="9b961c39-7140-4f14-9c25-b1eb266e6747"/>
+            </line>
+            <staticText>
+                <reportElement x="81" y="14" width="51" height="15" uuid="6eaf74e3-3246-4bb5-b948-189643a3c42a"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Cash:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="81" y="29" width="52" height="15" uuid="68d1008c-b093-4b3e-9868-33fb134fec07"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Change:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="395" y="16" width="51" height="15" uuid="8635d60d-7a76-48b1-ac4d-3cebe29cd2d0"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Cash:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="394" y="29" width="52" height="15" uuid="45733f96-3e3b-4677-8d76-8e61bbd6feb3"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Change:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="81" y="2" width="51" height="15" uuid="8dd72cd1-f770-4845-b1ea-782394424996"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Total:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="396" y="1" width="51" height="15" uuid="128f918d-7f4e-4c1a-98a5-71858fc3c7b8"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[Total:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="44" width="218" height="15" uuid="c0649467-8383-470f-8b77-1ffdc07ce72e"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{remarks}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="359" y="44" width="218" height="15" uuid="c6e2c98e-4549-4d51-854d-f9270dd2e49e"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{remarks}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+</jasperReport>

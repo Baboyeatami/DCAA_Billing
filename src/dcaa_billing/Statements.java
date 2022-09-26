@@ -14,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,9 +56,18 @@ public class Statements extends javax.swing.JInternalFrame {
     JPopupMenu menu = new JPopupMenu();
     Login OverideLogin;
     Statements main;
+    private int user;
+
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
+    }
 
     /**
-     * Creates new form StudentInfo
+     *
      */
     public Statements() {
         initComponents();
@@ -149,6 +160,53 @@ public class Statements extends javax.swing.JInternalFrame {
 
     }
 
+    private void Refund(String Student_ID, int SY) {
+
+        try {
+            String RefundCode = "RF-0001";
+            DecimalFormat formatter = new DecimalFormat("#,###.00");
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+            Connection c = DBConnection.getConnection();
+            PreparedStatement ps;
+
+            ps = c.prepareStatement("SELECT count(Particulars) FROM dcaa_databse.invoice where particulars like '%RF%' ");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int RFCount = Integer.parseInt(rs.getString(1));
+                RefundCode = "RF-" + String.format("%07d", RFCount + 1);
+            }
+
+            ps = c.prepareStatement("Insert into invoice (Value, Particulars, Category_of_charges_idCategory_of_charges, Student_Info_idStudent_Info, OrNum, DATE, School_Year_idSchool_Year, UseAccounts_idUseAccounts)values" + "('" + Balance + "','" + RefundCode + "','" + -1 + "','" + StudentID.getText() + "','" + RefundCode + "','" + timeStamp + "','" + String.valueOf(idSydisplay.get(SchoolYear.getSelectedIndex())) + "','" + getUser() + "')");
+
+            if (!ps.execute()) {
+                JOptionPane.showMessageDialog(this, "The Excess Billed amount of " + formatter.format(Math.abs(Balance)) + " is Corrected! \n Trasaction will be reflection on Payment history ", "Refund status", JOptionPane.INFORMATION_MESSAGE);
+                Activity_log();
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+
+    }
+
+    void Activity_log() {
+
+        try {
+            DBConnection.init();
+            Connection c = DBConnection.getConnection();
+            PreparedStatement ps;
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+            ps = c.prepareStatement("Insert into activity_log ( Activity_name, Description, Date, UseAccounts_idUseAccounts) values ('RF of " + Math.abs(Balance) + "Credited ','" + Student_ID + "','" + timeStamp + "','" + getUser() + "')");
+            ps.execute();
+            System.out.println("activity loged");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Section.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     void LoadStatement() {
         try {
             model.setRowCount(0);
@@ -160,12 +218,12 @@ public class Statements extends javax.swing.JInternalFrame {
             ps_Name = c.prepareStatement("Select F_name,M_name,L_name from student_info where id ='" + StudentID.getText() + "'");
             rs_name = ps_Name.executeQuery();
             if (rs_name.next()) {
-                Student_name.setText(rs_name.getString(1) + " " + rs_name.getString(2) + " " + rs_name.getString(3));
+                Student_name.setText(rs_name.getString(3) + ", " + rs_name.getString(1) + " " + rs_name.getString(2));
             }
             ps_Name.close();
             rs_name.close();
 
-            ps = c.prepareStatement("Select DATE,Particulars,Category_of_charges_idCategory_of_charges,Value,OrNum from Invoice where Student_Info_idStudent_Info='" + StudentID.getText() + "' AND School_Year_idSchool_Year='" + String.valueOf(idSydisplay.get(SchoolYear.getSelectedIndex())) + "'");
+            ps = c.prepareStatement("Select DATE,Particulars,Category_of_charges_idCategory_of_charges,Value,OrNum,remarks from Invoice where Student_Info_idStudent_Info='" + StudentID.getText() + "' AND School_Year_idSchool_Year='" + String.valueOf(idSydisplay.get(SchoolYear.getSelectedIndex())) + "'");
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -175,8 +233,14 @@ public class Statements extends javax.swing.JInternalFrame {
                 ps_chargeCheck = c.prepareStatement("Select Fee_Name from fee_charges where idFee_Charges='" + rs.getString("Category_of_charges_idCategory_of_charges") + "'");
                 rs_charge = ps_chargeCheck.executeQuery();
                 if (rs_charge.next()) {
-                    Description = rs_charge.getString(1);
+                    if (rs_charge.getString(1) == "") {
+                        Description = "Refund";
+                    } else {
+                        Description = rs_charge.getString(1);
+                    }
 
+                } else {
+                    Description = "Refund";
                 }
                 rs_charge.close();
 
@@ -187,7 +251,7 @@ public class Statements extends javax.swing.JInternalFrame {
                 }
                 rs_checkbill.close();
 
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2), Description, Charge, df2.format(rs.getDouble("Value")), rs.getString("OrNum")});
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2), Description, Charge, df2.format(rs.getDouble("Value")), rs.getString("OrNum"), rs.getString("remarks")});
 
             }
             rs.close();
@@ -244,6 +308,14 @@ public class Statements extends javax.swing.JInternalFrame {
 
     }
 
+    void setCasher(boolean Casher) {
+
+        if (Casher) {
+            Refund_button.setEnabled(false);
+        }
+
+    }
+
     void set_id(String id) {
         Student_ID = id;
         StudentID.setText(id);
@@ -264,12 +336,14 @@ public class Statements extends javax.swing.JInternalFrame {
 
     void Set_viewingMode() {
         jButton3.setEnabled(false);
+        Refund_button.setVisible(false);
         StudentID.requestFocus();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -287,12 +361,15 @@ public class Statements extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        Refund_button = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         Tuition = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         Payment = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         TotalBalance = new javax.swing.JLabel();
+
+        jMenu1.setText("jMenu1");
 
         setBackground(new java.awt.Color(102, 102, 102));
         setClosable(true);
@@ -363,13 +440,13 @@ public class Statements extends javax.swing.JInternalFrame {
         jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "DATE", "REFERENCE NO. ", "DESCRIPTION", "CHARGES AND FEES", "PAYMENTS", "OR Number"
+                "DATE", "REFERENCE NO. ", "DESCRIPTION", "CHARGES AND FEES", "PAYMENTS", "OR Number", "Remarks"
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(51, 204, 255));
@@ -428,6 +505,15 @@ public class Statements extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jButton3);
+
+        Refund_button.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        Refund_button.setText("Refund");
+        Refund_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Refund_buttonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Refund_button);
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
@@ -530,8 +616,25 @@ public class Statements extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void Refund_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Refund_buttonActionPerformed
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        if (Balance >= 0) {
+            JOptionPane.showMessageDialog(this, "Refund not applicable to this account");
+        } else {
+            int Op = JOptionPane.showConfirmDialog(this, "The amount of " + formatter.format(Math.abs(Balance)) + " will be refunded \nProceed to Refund ?", "Refund Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if (Op == 0) {
+                System.out.println("" + Student_ID + "   " + String.valueOf(idSydisplay.get(SchoolYear.getSelectedIndex())));
+                Refund(Student_ID, Integer.parseInt(idSydisplay.get(SchoolYear.getSelectedIndex())));
+            }
+
+        }
+
+    }//GEN-LAST:event_Refund_buttonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Payment;
+    private javax.swing.JButton Refund_button;
     private javax.swing.JComboBox<String> SchoolYear;
     private javax.swing.JTextField StudentID;
     private javax.swing.JTextField Student_name;
@@ -550,6 +653,7 @@ public class Statements extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

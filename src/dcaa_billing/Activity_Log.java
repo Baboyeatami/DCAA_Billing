@@ -49,7 +49,7 @@ public class Activity_Log extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(354, 42, 0, 0));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -237,7 +237,7 @@ public class Activity_Log extends javax.swing.JFrame {
             String S = "%" + Search.getText() + "%";
 
             if (Activityselection.getSelectedIndex() == 0) {
-                ps = c.prepareStatement("Select *  from activity_log  where Activity_name like '" + S + "' ");
+                ps = c.prepareStatement("Select *  from activity_log  where Activity_name like '" + S + "'  order by Date DESC");
                 rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -246,7 +246,7 @@ public class Activity_Log extends javax.swing.JFrame {
                 }
             } else if (Activityselection.getSelectedIndex() == 1) {
 
-                ps = c.prepareStatement("Select *  from activity_log  where UseAccounts_idUseAccounts like '" + S + "' ");
+                ps = c.prepareStatement("Select *  from activity_log  where UseAccounts_idUseAccounts like '" + S + "' order by Date DESC");
                 rs = ps.executeQuery();
 
                 while (rs.next()) {

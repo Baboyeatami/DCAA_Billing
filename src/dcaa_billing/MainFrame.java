@@ -38,7 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
     Accounting accounting = null;
     Section section1 = null;
     Activity_Log activity_Log;
-    boolean Registrar = false, Princiap = true;
+    boolean Registrar = false, Princiap = true, Casher = false;
     DBConnection connection;
     About about = null;
     Student_Status_List status_List;
@@ -70,6 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -112,6 +113,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuPrinsipals = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
+        StudentInformation = new javax.swing.JMenuItem();
         jMenuViewing = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuFinance = new javax.swing.JMenu();
@@ -122,8 +124,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem22.setText("jMenuItem22");
 
+        jMenuItem26.setText("jMenuItem26");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Digos Central Adventist Academy Billing and Management System 50.0.8\n");
+        setTitle("Digos Central Adventist Academy Billing and Management System 50.0.10");
         setBackground(new java.awt.Color(13, 17, 23));
         setBounds(new java.awt.Rectangle(97, 8, 0, 0));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -483,6 +487,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenuPrinsipals.add(jMenuItem19);
 
+        StudentInformation.setText("Student Information");
+        StudentInformation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StudentInformationActionPerformed(evt);
+            }
+        });
+        jMenuPrinsipals.add(StudentInformation);
+
         jMenuBar1.add(jMenuPrinsipals);
 
         jMenuViewing.setForeground(new java.awt.Color(255, 255, 255));
@@ -535,9 +547,15 @@ public class MainFrame extends javax.swing.JFrame {
             statements = new Statements();
             statements.setBounds(62, -1, 1100, 550);
             DesktopPane.add(statements);
+
+            if (Casher) {
+                statements.setCasher(Casher);
+            }
             statements.setVisible(true);
         } else {
-
+            if (Casher) {
+                statements.setCasher(Casher);
+            }
             statements.setBounds(62, -1, 1100, 550);
 
             statements.setVisible(true);
@@ -664,21 +682,22 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
 
-        if (student_List == null && !Registrar) {
+        if (student_List == null && !Registrar && !Casher) {
             student_List = new Student_List();
             student_List.main = this;
             student_List.UserID = String.valueOf(User);
             DesktopPane.add(student_List);
             student_List.setVisible(true);
+            System.out.println("Not casher mode ....");
 
-        } else if (Registrar && student_List == null) {
+        } else if (Registrar && student_List == null && !Casher) {
             student_List = new Student_List();
             student_List.set_RegistrarMode();
             student_List.main = this;
             student_List.UserID = String.valueOf(User);
             DesktopPane.add(student_List);
-
             student_List.setVisible(true);
+            System.out.println("Registrar mode ....");
 
         } else if (Registrar) {
             student_List.set_RegistrarMode();
@@ -686,19 +705,40 @@ public class MainFrame extends javax.swing.JFrame {
             student_List.UserID = String.valueOf(User);
             //DesktopPane.add(student_List);
             student_List.setVisible(true);
+            System.out.println("Registrar Mode ....");
 
-        } else if (!Princiap && student_List == null) {
+        } else if (!Princiap && student_List == null && !Casher) {
             student_List = new Student_List();
             student_List.set_PrinciaplMode();
             student_List.main = this;
             student_List.UserID = String.valueOf(User);
-            //DesktopPane.add(student_List);
+            DesktopPane.add(student_List);
             student_List.setVisible(true);
+            System.out.println("Prinsipal Mode ....");
+
+        } else if (Casher && student_List == null) {
+            student_List = new Student_List();
+            student_List.set_casher_mode();
+            student_List.main = this;
+            student_List.UserID = String.valueOf(User);
+            DesktopPane.add(student_List);
+            student_List.setVisible(true);
+            System.out.println("Casher Mode On.........1");
+
+        } else if (Casher) {
+
+            student_List.set_casher_mode();
+            student_List.main = this;
+            student_List.UserID = String.valueOf(User);
+            student_List.setVisible(true);
+            DesktopPane.add(student_List);
+            System.out.println("Casher Mode On.........2");
 
         } else {
             student_List.main = this;
             student_List.UserID = String.valueOf(User);
             student_List.setVisible(true);
+            System.out.println("Basic Mode");
 
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -710,9 +750,11 @@ public class MainFrame extends javax.swing.JFrame {
             invoice = new Invoice();
             invoice.setUser(User);
             invoice.setVisible(true);
+            invoice.load_running_Total();
         } else {
             invoice.setUser(User);
             invoice.setVisible(true);
+            invoice.load_running_Total();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     User_accounts user_accounts = null;
@@ -913,12 +955,14 @@ public class MainFrame extends javax.swing.JFrame {
             student_List.UserID = String.valueOf(User);
             DesktopPane.add(student_List);
             student_List.setVisible(true);
+            invoice.load_running_Total();
 
         } else {
             student_List.main = this;
             student_List.UserID = String.valueOf(User);
             DesktopPane.add(student_List);
             student_List.setVisible(true);
+            invoice.load_running_Total();
 
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
@@ -1007,6 +1051,19 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
+    private void StudentInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentInformationActionPerformed
+        student_List = new Student_List();
+        student_List.main = this;
+        student_List.UserID = String.valueOf(User);
+        DesktopPane.add(student_List);
+        student_List.set_Prinsipal_();
+        student_List.setVisible(true);
+        student_List.Prinsipal = true;
+        student_List.set_Prinsipal_();
+
+        System.out.println("Prinscipal mode ....");
+    }//GEN-LAST:event_StudentInformationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1066,6 +1123,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane DesktopPane;
+    private javax.swing.JMenuItem StudentInformation;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel UserLabel;
     private javax.swing.JButton jButton1;
@@ -1103,6 +1161,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1199,6 +1258,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem9.setVisible(false);
 
         jButton5.setVisible(true);
+        jButton5.setText("Student Information Management");
         jButton1.setVisible(false);
         jButton8.setVisible(false);
         jButton9.setVisible(false);
@@ -1215,6 +1275,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     void Casher() {
+        Casher = true;
         jMenu1.setVisible(false);
         jMenu3.setVisible(false);
         jMenu3.setEnabled(false);
@@ -1226,8 +1287,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuViewing.setEnabled(false);
         jMenuFinance.setVisible(false);
         jMenuFinance.setEnabled(false);
+        jMenuItem16.setVisible(false);
 
-        jButton5.setVisible(false);
+        jButton5.setVisible(true);
         jButton1.setVisible(true);
         jButton8.setVisible(false);
         jButton9.setVisible(false);

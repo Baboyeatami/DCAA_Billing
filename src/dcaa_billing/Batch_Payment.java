@@ -46,6 +46,7 @@ public class Batch_Payment extends javax.swing.JFrame {
     ArrayList<String> Payment = new ArrayList<>();
     ArrayList<String> StudentID = new ArrayList<>();
     ArrayList<String> SchoolY = new ArrayList<>();
+    ArrayList<String> Remakrs = new ArrayList<>();
     String Userid;
     private static DecimalFormat df2 = new DecimalFormat("#,###.##");
     JMenuItem RemovedBill = new JMenuItem("Removed Bill");
@@ -177,14 +178,15 @@ public class Batch_Payment extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date ", "Reference Number", "Charge Name", "Chage Value", "Payment ", "OR number", "Student Id", "School Year"
+                "Date ", "Reference Number", "Charge Name", "Chage Value", "Payment ", "OR number", "Student Id", "School Year", "Remarks"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -459,7 +461,7 @@ public class Batch_Payment extends javax.swing.JFrame {
                 ps = c.prepareStatement("Select Amount,Fee_Charges_idFee_Charges,School_Year_idSchool_Year from billing where ReferenceNo='" + SelectedPayments.get(i) + "'");
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                    ps = c.prepareStatement("Insert into invoice (Value, Particulars, Category_of_charges_idCategory_of_charges, Student_Info_idStudent_Info, OrNum, DATE, School_Year_idSchool_Year, UseAccounts_idUseAccounts)values" + "('" + Payment.get(i) + "','" + SelectedPayments.get(i) + "','" + rs.getString(2) + "','" + StudentID.get(i) + "','" + ORNumber.get(i) + "','" + dateString + "','" + SchoolY.get(i) + "','" + Userid + "')");
+                    ps = c.prepareStatement("Insert into invoice (Value, Particulars, Category_of_charges_idCategory_of_charges, Student_Info_idStudent_Info, OrNum, DATE, School_Year_idSchool_Year, UseAccounts_idUseAccounts,remarks)values" + "('" + Payment.get(i) + "','" + SelectedPayments.get(i) + "','" + rs.getString(2) + "','" + StudentID.get(i) + "','" + ORNumber.get(i) + "','" + dateString + "','" + SchoolY.get(i) + "','" + Userid + "','" + Remakrs.get(i) + "')");
                     ps.execute();
 
                 }
@@ -493,7 +495,7 @@ public class Batch_Payment extends javax.swing.JFrame {
                     ps = c.prepareStatement("Select Amount,Fee_Charges_idFee_Charges,School_Year_idSchool_Year,Particulars from billing where ReferenceNo='" + SelectedPayments.get(i) + "'");
                     rs = ps.executeQuery();
                     if (rs.next()) {
-                        model.addRow(new Object[]{dateString, SelectedPayments.get(i), rs.getString("Particulars"), rs.getString("Amount"), Payment.get(i), ORNumber.get(i), StudentID.get(i), Sydisplay.get(idSydisplay.indexOf(SchoolY.get(i)))});
+                        model.addRow(new Object[]{dateString, SelectedPayments.get(i), rs.getString("Particulars"), rs.getString("Amount"), Payment.get(i), ORNumber.get(i), StudentID.get(i), Sydisplay.get(idSydisplay.indexOf(SchoolY.get(i))), Remakrs.get(i)});
 
                     }
 
@@ -537,6 +539,8 @@ public class Batch_Payment extends javax.swing.JFrame {
         System.out.println(Payment);
         System.out.println("Student IDs");
         System.out.println(StudentID);
+        System.out.println("Remarks ");
+        System.out.println(Remakrs);
 
     }
 

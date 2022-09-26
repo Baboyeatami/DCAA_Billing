@@ -249,6 +249,7 @@ public class Payment_ORnum extends javax.swing.JFrame {
         main.batch_Payment.ORNumber.add(ORNum.getText());
         main.batch_Payment.StudentID.add(StudentID);
         main.batch_Payment.SchoolY.add(main.batch_Payment.idSydisplay.get(main.batch_Payment.SY.getSelectedIndex()));
+        main.batch_Payment.Remakrs.add(JOptionPane.showInputDialog(this, "Enter Remarks for this transaction.\nif no remarks, just leave it blank"));
         main.batch_Payment.Display_Data();
         main.batch_Payment.LoadData();
         main.batch_Payment.CompututeTransaction();

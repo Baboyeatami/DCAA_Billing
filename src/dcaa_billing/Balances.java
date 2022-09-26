@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Balances extends javax.swing.JFrame {
 
+    boolean Prinsipal = true;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<String> Sy_list = new ArrayList<>();
     ArrayList<String> Sy_list_display = new ArrayList<>();
@@ -317,7 +318,7 @@ public class Balances extends javax.swing.JFrame {
 
             if (rs.next()) {
                 StudentId.setText("Student ID: " + id);
-                Student_Name.setText("Name: " + rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3));
+                Student_Name.setText("Name: " + rs.getString(3) + ", " + rs.getString(1) + " " + rs.getString(2));
 
             }
             ps.close();
@@ -385,6 +386,14 @@ public class Balances extends javax.swing.JFrame {
             System.out.println("View Bill Removed");
         }
 
+    }
+
+    void set_PrisipalModel(boolean mode) {
+        Prinsipal = mode;
+
+        if (Prinsipal) {
+            menu.removeAll();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

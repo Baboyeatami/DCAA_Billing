@@ -85,10 +85,16 @@ public class Student_List extends javax.swing.JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 StudentBill studentBill = null;
-                if (studentBill == null) {
+                if (Casher) {
                     studentBill = new StudentBill();
-                    studentBill.set_ID(StudentId);
+                    studentBill.Set_casherMode(true);
                     studentBill.UserId = UserID;
+                    studentBill.set_ID(StudentId);
+                    studentBill.setVisible(true);
+                } else {
+                    studentBill = new StudentBill();
+                    studentBill.UserId = UserID;
+                    studentBill.set_ID(StudentId);
                     studentBill.setVisible(true);
 
                 }
@@ -377,9 +383,9 @@ public class Student_List extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        StudentID.setBackground(new java.awt.Color(22, 27, 34));
+        StudentID.setBackground(new java.awt.Color(255, 255, 255));
         StudentID.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        StudentID.setForeground(new java.awt.Color(255, 255, 255));
+        StudentID.setForeground(new java.awt.Color(0, 0, 0));
         StudentID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StudentIDActionPerformed(evt);
@@ -421,9 +427,11 @@ public class Student_List extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Enter Keyword:");
 
-        searchKey.setBackground(new java.awt.Color(22, 27, 34));
+        searchKey.setBackground(new java.awt.Color(255, 255, 255));
         searchKey.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        searchKey.setForeground(new java.awt.Color(255, 255, 255));
+        searchKey.setForeground(new java.awt.Color(255, 51, 51));
+        searchKey.setToolTipText("Search Here");
+        searchKey.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchKeyActionPerformed(evt);
@@ -628,8 +636,15 @@ public class Student_List extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         StudentBill studentBill = null;
-        if (studentBill == null) {
+        if (Casher) {
             studentBill = new StudentBill();
+            studentBill.Set_casherMode(true);
+            studentBill.UserId = UserID;
+            studentBill.set_ID(StudentId);
+            studentBill.setVisible(true);
+        } else {
+            studentBill = new StudentBill();
+            studentBill.UserId = UserID;
             studentBill.set_ID(StudentId);
             studentBill.setVisible(true);
 
@@ -661,7 +676,7 @@ public class Student_List extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
 
-            if (studentInfo == null) {
+            if (studentInfo == null && !Prinsipal) {
 
                 studentInfo = new StudentInfo_new();
                 studentInfo.UserId = UserID;
@@ -669,6 +684,24 @@ public class Student_List extends javax.swing.JInternalFrame {
                 studentInfo.setBounds(56, 7, 1067, 535);
                 studentInfo.loadInformation(StudentId);
                 studentInfo.setVisible(true);
+
+            } else if (studentInfo == null && Prinsipal) {
+                studentInfo = new StudentInfo_new();
+                studentInfo.UserId = UserID;
+                main.DesktopPane.add(studentInfo);
+                studentInfo.setBounds(56, 7, 1067, 535);
+                studentInfo.loadInformation(StudentId);
+                studentInfo.setVisible(true);
+                studentInfo.jButton2.setVisible(false);
+
+            } else if (Prinsipal) {
+                studentInfo = new StudentInfo_new();
+                studentInfo.UserId = UserID;
+                main.DesktopPane.add(studentInfo);
+                studentInfo.setBounds(56, 7, 1067, 535);
+                studentInfo.loadInformation(StudentId);
+                studentInfo.setVisible(true);
+                studentInfo.jButton2.setVisible(false);
 
             } else {
                 main.DesktopPane.add(studentInfo);
@@ -706,7 +739,7 @@ public class Student_List extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.out.println("Registrar Mode:" + Registrar);
-        if (balances == null) {
+        if (balances == null && !Prinsipal) {
             balances = new Balances();
             if (Registrar) {
                 balances.Set_registar_mode(Registrar);
@@ -717,6 +750,19 @@ public class Student_List extends javax.swing.JInternalFrame {
             balances.load_Balance(StudentId);
             balances.setVisible(true);
             balances.setAlwaysOnTop(true);
+
+        } else if (Prinsipal) {
+            balances = new Balances();
+            if (Registrar) {
+                balances.Set_registar_mode(Registrar);
+                System.out.println("Prinsipal Mode" + Prinsipal);
+            }
+
+            balances.Display_StatementWindow(main);
+            balances.load_Balance(StudentId);
+            balances.setVisible(true);
+            balances.setAlwaysOnTop(true);
+            balances.set_PrisipalModel(true);
 
         } else {
             if (Registrar) {
@@ -805,7 +851,7 @@ public class Student_List extends javax.swing.JInternalFrame {
             ps = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where id like '" + S + "' AND f_name is not Null  Order by create_time DESC limit 30");
             rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString(2), rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5), rs.getString(6), rs.getString(7)});
+                tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -919,7 +965,7 @@ public class Student_List extends javax.swing.JInternalFrame {
             ps = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where L_name like '" + S + "'");
             rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString(2), rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5), rs.getString(6), rs.getString(7)});
+                tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -939,22 +985,41 @@ public class Student_List extends javax.swing.JInternalFrame {
             ps = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where GradeLevel like '" + S + "'");
             rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString(2), rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5), rs.getString(6), rs.getString(7)});
+                tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
             }
         } catch (Exception e) {
             System.out.println(e);
         }
 
     }
+    boolean Casher = false;
+
+    void set_casher_mode() {
+        Casher = true;
+        menu.remove(DeleteStudent);
+        //sdf
+    }
+
+    void set_Prinsipal_() {
+        jButton1.setVisible(false);
+        jButton3.setVisible(false);
+        jButton2.setVisible(false);
+        jButton7.setVisible(false);
+        menu.removeAll();
+    }
 
     void set_RegistrarMode() {
-        jButton1.setVisible(false);
-        jButton2.setVisible(false);
-        jButton3.setVisible(false);
-        jButton7.setVisible(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton6.setEnabled(false);
         menu.remove(Bill);
         menu.remove(PaymentH);
         menu.remove(DeleteStudent);
+        menu.remove(Balances);
+
         Registrar = true;
     }
 
@@ -1012,7 +1077,7 @@ public class Student_List extends javax.swing.JInternalFrame {
             //ps = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where F_name like '" + S + "' ");
             rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString(2), rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5), rs.getString(6), rs.getString(7)});
+                tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -1033,7 +1098,7 @@ public class Student_List extends javax.swing.JInternalFrame {
             ps = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where F_name like '" + S + "'");
             rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString(2), rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5), rs.getString(6), rs.getString(7)});
+                tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -1055,7 +1120,7 @@ public class Student_List extends javax.swing.JInternalFrame {
                 ps1 = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where id  like '" + S + "' and IS NOT NULL");
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
-                    tableModel.addRow(new Object[]{rs1.getString(2), rs1.getString(3) + " " + rs1.getString(4) + " " + rs1.getString(5), rs1.getString(6), rs1.getString(7)});
+                    tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
                 }
             }
 
@@ -1086,7 +1151,7 @@ public class Student_List extends javax.swing.JInternalFrame {
                     ps1 = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where id = '" + rs1.getString(1) + "'");
                     rs1 = ps1.executeQuery();
                     if (rs1.next()) {
-                        tableModel.addRow(new Object[]{rs1.getString(2), rs1.getString(3) + " " + rs1.getString(4) + " " + rs1.getString(5), rs1.getString(6), rs1.getString(7)});
+                        tableModel.addRow(new Object[]{rs1.getString(2), rs1.getString("L_name") + ", " + rs1.getString("F_name") + " " + rs1.getString("M_name"), rs1.getString(6), rs1.getString(7)});
                     }
                 }
 
@@ -1111,7 +1176,7 @@ public class Student_List extends javax.swing.JInternalFrame {
                 ps1 = c.prepareStatement("Select idStudent_Info,id,F_name,M_name,L_name,GradeLevel,Status from student_info where id = '" + 3 + "'");
                 rs1 = ps1.executeQuery();
                 if (rs1.next()) {
-                    tableModel.addRow(new Object[]{rs1.getString(2), rs1.getString(3) + " " + rs1.getString(4) + " " + rs1.getString(5), rs1.getString(6), rs1.getString(7)});
+                    tableModel.addRow(new Object[]{rs.getString(2), rs.getString("L_name") + ", " + rs.getString("F_name") + " " + rs.getString("M_name"), rs.getString(6), rs.getString(7)});
                 }
             }
 

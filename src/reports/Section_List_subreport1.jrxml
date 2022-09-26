@@ -76,15 +76,15 @@
             </textField>
             <textField>
                 <reportElement x="82" y="0" width="63" height="13" uuid="fbb39223-2f1a-4209-8f4b-9fcba7deb876"/>
-                <textFieldExpression><![CDATA[$F{F_name}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{L_name}+", "]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="144" y="0" width="58" height="13" uuid="8f2a4224-e108-4d48-8a7d-823944521dd0"/>
-                <textFieldExpression><![CDATA[$F{M_name}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{F_name}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="202" y="0" width="83" height="13" uuid="56507ee6-8420-4d81-8cb3-27af6552bdf7"/>
-                <textFieldExpression><![CDATA[$F{L_name}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{M_name}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="285" y="0" width="82" height="13" uuid="01d2aaac-2833-4906-a2fb-10174dcf0179"/>

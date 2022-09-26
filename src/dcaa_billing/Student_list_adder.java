@@ -163,7 +163,7 @@ public class Student_list_adder extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, 30));
 
         buttonGroup1.add(radio_student);
         radio_student.setText("Student");
@@ -358,7 +358,7 @@ public class Student_list_adder extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString(4) + ", " + rs.getString(2) + " " + rs.getString(3)});
             }
 
         } catch (SQLException ex) {
@@ -390,7 +390,7 @@ public class Student_list_adder extends javax.swing.JFrame {
             }
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString(4) + ", " + rs.getString(2) + " " + rs.getString(3)});
             }
 
         } catch (SQLException ex) {

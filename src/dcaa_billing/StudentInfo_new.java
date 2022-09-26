@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentInfo_new extends javax.swing.JInternalFrame {
 
+    boolean Prinsipal = true;
     public String UserId;
     String UpdateID;
     ArrayList<String> Status = new ArrayList<>();
@@ -37,6 +38,7 @@ public class StudentInfo_new extends javax.swing.JInternalFrame {
         initComponents();
         setBounds(56, 7, 1067, 535);
         load_Status();
+
     }
 
     /**
@@ -681,7 +683,13 @@ public class StudentInfo_new extends javax.swing.JInternalFrame {
                 Lname.setText(rs.getString(3));
                 NameEX.setText(rs.getString(4));
                 Bdate.setDate(date);
-                Gender.setName(rs.getString(7));
+
+                if (rs.getString("Sex").equals("Male")) {
+                    Gender.setSelectedIndex(0);
+                } else {
+                    Gender.setSelectedIndex(1);
+                }
+
                 StatusCombo.setSelectedItem(rs.getString(8));
                 GradeLevel.setText(rs.getString(9));
                 Religion.setText(rs.getString(10));
@@ -799,6 +807,15 @@ public class StudentInfo_new extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+    }
+
+    void set_prinsipalMode(boolean mode) {
+        Prinsipal = mode;
+
+        if (Prinsipal) {
+            jButton2.setVisible(false);
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -174,17 +174,17 @@ public class Section_Manager extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Section Key", "Student  ID", "Name"
+                "Student  ID", "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false
+                true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -333,7 +333,7 @@ public class Section_Manager extends javax.swing.JFrame {
             // String Source="C:\\Users\\JAMIEXXX3\\Documents\\NetBeansProjects\\Phonelist\\src\\Forms\\report1.jrxml";
             JasperDesign Jd = JRXmlLoader.load(System.getProperty("user.dir") + "\\\\reports\\\\Section_List.jrxml");
             String Location = System.getProperty("user.dir") + "\\\\reports\\\\";
-            String SQL = "Select * from sectioning where section_id='" + ID + "'";
+            String SQL = "SELECT id,F_name,M_name,L_name,sex,GradeLevel FROM dcaa_databse.student_info where id IN (Select studentid from  sectioning where section_id='" + ID + "') Order by L_name";
 
             JRDesignQuery JQ = new JRDesignQuery();
             JQ.setText(SQL);
@@ -365,18 +365,15 @@ public class Section_Manager extends javax.swing.JFrame {
             PreparedStatement ps, ps1;
             ResultSet rs, rs1 = null;
             model.setRowCount(0);
-            ps = c.prepareStatement("Select studentid, section_id,idSectioning from sectioning where section_id='" + IDSection + "'");
+            ps = c.prepareStatement("SELECT F_name,M_name,L_name,id FROM dcaa_databse.student_info where id IN (Select studentid from  sectioning where section_id='" + IDSection + "') Order by L_name");
 
             rs = ps.executeQuery();
             String Name = null;
             while (rs.next()) {
-                ps1 = c.prepareStatement("Select F_name,M_name,L_name from student_info where id='" + rs.getString(1) + "'");
-                rs1 = ps1.executeQuery();
-                if (rs1.next()) {
-                    Name = rs1.getString(1) + " " + rs1.getString(2) + " " + rs1.getString(3);
-                    System.out.println("Name: " + Name);
-                }
-                model.addRow(new Object[]{rs.getString("idSectioning"), rs.getString(1), Name});
+
+                Name = rs.getString(3) + ", " + rs.getString(1) + " " + rs.getString(2);
+                System.out.println("Name: " + Name);
+                model.addRow(new Object[]{rs.getString("id"), Name});
 
             }
 

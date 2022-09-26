@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Payment_History_subreport1" pageWidth="572" pageHeight="752" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9ad7ce14-46b1-40af-b0d2-67ff51854970">
+    <property name="ireport.zoom" value="5.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="parameter1" class="java.lang.String">
+        <defaultValueExpression><![CDATA[37]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT
+     Fee_charges.`Fee_name`
+FROM
+     `Fee_charges` Fee_charges
+WHERE
+     idFee_Charges = $P{parameter1}]]>
+    </queryString>
+    <field name="Fee_name" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="15">
+            <textField pattern="" isBlankWhenNull="false">
+                <reportElement x="0" y="0" width="100" height="15" uuid="71a8afac-044d-4366-8f94-44246a1a7a80"/>
+                <textFieldExpression><![CDATA[$F{Fee_name}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <noData>
+        <band height="14">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="14" uuid="90d571b4-39e4-4ea0-b9df-a0b32451ff00"/>
+                <text><![CDATA[Refund]]></text>
+            </staticText>
+        </band>
+    </noData>
+</jasperReport>

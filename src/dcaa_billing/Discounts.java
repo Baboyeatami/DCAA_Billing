@@ -173,11 +173,20 @@ public class Discounts extends javax.swing.JInternalFrame {
             Connection c = DBConnection.getConnection();
             PreparedStatement ps;
             ResultSet rs = null;
+            String Discount, ValueString;
             int idDiscount = 0;
             ps = c.prepareStatement("Select idDiscounts, Discount_Name, Value,Type from discounts");
             rs = ps.executeQuery();
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+
+                if (rs.getString(4).equals("0")) {
+                    Discount = "Percentage";
+                    ValueString = rs.getString(3) + "%";
+                } else {
+                    Discount = "Fix Value";
+                    ValueString = rs.getString(3) + " Php";
+                }
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2), ValueString, Discount});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Discounts.class.getName()).log(Level.SEVERE, null, ex);

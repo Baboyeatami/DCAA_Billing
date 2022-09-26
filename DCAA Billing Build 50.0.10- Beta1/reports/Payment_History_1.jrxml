@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Payment_HIstory" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9c3f2d7c-4fc6-4108-a9dd-c42db050b152">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="217"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="Description" class="java.util.List"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <parameter name="StudentName" class="java.lang.String"/>
+    <parameter name="StudentID" class="java.lang.String"/>
+    <parameter name="SY" class="java.lang.String"/>
+    <parameter name="Bill" class="java.lang.String"/>
+    <parameter name="Balance" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[Select * from Invoice where Student_Info_idStudent_Info =$P{StudentID} AND School_Year_idSchool_Year =$P{SY}]]>
+    </queryString>
+    <field name="idINVOICE" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Value" class="java.lang.Double">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Particulars" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Category_of_charges_idCategory_of_charges" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="OrNum" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="DATE" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="UseAccounts_idUseAccounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <variable name="Value_2" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{Value}]]></variableExpression>
+    </variable>
+    <variable name="Value_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+        <variableExpression><![CDATA[$F{Value}]]></variableExpression>
+    </variable>
+    <variable name="Value_3" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{Value}]]></variableExpression>
+    </variable>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="186" height="20" uuid="7f147fe0-20ab-454a-ae14-6cf5ec04a3e2"/>
+                <textElement>
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Payment History]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="13">
+            <staticText>
+                <reportElement x="449" y="0" width="100" height="13" uuid="b28e6acd-5644-4af1-9779-e41d7d5d1ce8"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[OR Number]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="124" y="0" width="85" height="13" uuid="05d468d5-783b-4ce3-bb19-552246b875fd"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Reference No.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="24" y="0" width="100" height="13" uuid="17b6baae-1199-49c3-9b87-0a4bb7461499"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="327" y="0" width="105" height="13" uuid="1191f5ba-bae3-46e8-913f-a03132ea9363"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Payment]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="208" y="0" width="100" height="13" uuid="544e3836-22a0-4e03-acdc-04b1e398470a"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Transaction Name]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="12" width="555" height="1" uuid="06466555-9907-4829-9d14-26b7cad4c1ad"/>
+            </line>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="13" splitType="Stretch">
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="26" y="0" width="98" height="13" uuid="ce6dabcf-a861-4cd1-a714-6761b294f471"/>
+                <textFieldExpression><![CDATA[$F{DATE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="124" y="0" width="84" height="13" uuid="e56ba25a-b20a-41b7-9348-08a65a1c4a29"/>
+                <textFieldExpression><![CDATA[$F{Particulars}]]></textFieldExpression>
+            </textField>
+            <textField pattern="#,##0.00">
+                <reportElement x="327" y="0" width="105" height="13" uuid="7ed76d82-5bf2-4f27-a07b-f58c40399f8e"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Value}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="0" width="26" height="13" uuid="69621262-ac16-44d1-b452-14bf5437529f"/>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement x="209" y="0" width="118" height="13" uuid="f456fff4-8a64-4dc6-a8a1-1a905956d73a"/>
+                <subreportParameter name="parameter1">
+                    <subreportParameterExpression><![CDATA[$F{Category_of_charges_idCategory_of_charges}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Payment_History_subreport1.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement x="449" y="0" width="106" height="13" uuid="45f8dfc2-0d9f-446f-a887-bcb1f4b3bd96"/>
+                <textFieldExpression><![CDATA[$F{OrNum}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="21">
+            <staticText>
+                <reportElement x="316" y="0" width="106" height="20" uuid="22d35b7a-70d7-42ce-ab2c-fbae1ceb8244"/>
+                <textElement>
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total Payment:]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="0" width="555" height="1" uuid="3e8f9456-59e3-4292-8fd8-d4810be9df1c"/>
+            </line>
+            <textField pattern="¤ #,##0.00">
+                <reportElement x="422" y="1" width="133" height="20" uuid="d4fd062c-9f58-4f06-8c78-2cbb81c122c1"/>
+                <textElement>
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{Value_3}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+</jasperReport>
+t>
