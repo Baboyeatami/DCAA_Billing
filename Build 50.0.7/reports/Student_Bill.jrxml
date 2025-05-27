@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5b05899a-9e90-468e-a2ca-3b00cb5e1cf7">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="84"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="Full_Name" class="java.lang.String"/>
+    <parameter name="SY" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[SELECT * FROM dcaa_databse.billing where Student_Info_idStudent_Info='20180000001' AND School_Year_idSchool_Year='4']]>
+    </queryString>
+    <field name="idBilling" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Fee_Charges_idFee_Charges" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Bill_Date" class="java.sql.Date">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Discounts_idDiscounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Particulars" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Amount" class="java.lang.Double">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="ReferenceNo" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="dateCreated" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="UseAccounts_idUseAccounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <variable name="Amount_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+        <variableExpression><![CDATA[$F{Amount}]]></variableExpression>
+    </variable>
+    <variable name="variable1" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="104" splitType="Stretch">
+            <staticText>
+                <reportElement x="127" y="0" width="357" height="32" uuid="45950ab4-6b62-4f36-96da-4adc7224df85"/>
+                <textElement>
+                    <font fontName="Consolas" size="20"/>
+                </textElement>
+                <text><![CDATA[Digos Central Adventist Academy]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="167" y="79" width="197" height="25" uuid="a600f466-084c-46b3-8c8a-0c3ea64a7e4f"/>
+                <textElement>
+                    <font fontName="Consolas" size="18"/>
+                </textElement>
+                <text><![CDATA[Billing Statement]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="24" width="148" height="20" uuid="48a21eec-e253-4443-8cd2-6f1a29c2d513"/>
+                <text><![CDATA[Lapu-Lapu Extension, Digos City]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="223" y="35" width="110" height="20" uuid="185e5165-13d4-4828-8274-31890be107f7"/>
+                <text><![CDATA[Tel No. (082) 553-3172]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="175" y="47" width="201" height="20" uuid="b7f4ea30-f52f-4864-b78e-053f7442f106"/>
+                <text><![CDATA[ digoscentral.adventistacademy@yahoo.com]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="50">
+            <textField>
+                <reportElement x="104" y="24" width="210" height="20" uuid="99dfbb54-8639-40fe-88b0-f063e71bf83e"/>
+                <textElement>
+                    <font fontName="Consolas" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Full_Name}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="2" width="99" height="20" uuid="123207fe-d03b-4369-943c-d3d41ac3c88b"/>
+                <textElement>
+                    <font fontName="Consolas" size="14"/>
+                </textElement>
+                <text><![CDATA[Student ID:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="104" y="2" width="130" height="20" uuid="287225ae-f83f-427f-897d-faf463c42c72"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Student_Info_idStudent_Info}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="24" width="109" height="20" uuid="292e88a1-87da-4a67-a11f-c2a4bee907aa"/>
+                <textElement>
+                    <font fontName="Consolas" size="14"/>
+                </textElement>
+                <text><![CDATA[Student Name:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="445" y="4" width="124" height="20" uuid="b383f8a4-f458-4d42-b705-ef42d855a8e3"/>
+                <textElement>
+                    <font fontName="Consolas"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{SY}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="374" y="4" width="71" height="20" uuid="4ef5837f-c4fb-4b97-91ad-5b09a64ae2cc"/>
+                <textElement>
+                    <font fontName="Consolas"/>
+                </textElement>
+                <text><![CDATA[School Year:]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="21" splitType="Stretch">
+            <staticText>
+                <reportElement x="296" y="1" width="100" height="20" uuid="0af7aeb2-c018-4143-b697-0ade18dfe8ef"/>
+                <textElement>
+                    <font fontName="Consolas" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Particulars]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="439" y="1" width="100" height="20" uuid="bf124925-b30c-4164-809e-e628d62925c8"/>
+                <textElement>
+                    <font fontName="Consolas" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Amount]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="154" y="1" width="100" height="20" uuid="2e77fcab-fdaa-4d4c-84c3-4d36de7bcc3e"/>
+                <textElement>
+                    <font fontName="Consolas" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Reference No.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="46" y="1" width="100" height="20" uuid="39cfe712-20ac-418e-ad04-4cb80465ce35"/>
+                <textElement>
+                    <font fontName="Consolas" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date Billed]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="22" splitType="Stretch">
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="47" y="1" width="100" height="20" uuid="d9586bf6-253d-44be-a899-d3edd926672c"/>
+                <textElement>
+                    <font fontName="Consolas" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Bill_Date}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="154" y="1" width="100" height="20" uuid="af7fdf09-46aa-4d6a-9e9f-407d69c12d4b"/>
+                <textElement>
+                    <font fontName="Consolas" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{ReferenceNo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="296" y="2" width="100" height="20" uuid="0c03b32d-d67c-4e85-8751-2d51971b05ae"/>
+                <textElement>
+                    <font fontName="Consolas" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Particulars}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="439" y="2" width="100" height="20" uuid="def36400-5fa9-4f60-9714-44e74fa6b0cb"/>
+                <textElement>
+                    <font fontName="Consolas" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="13" y="2" width="22" height="20" uuid="54c9c193-b689-490d-8168-4c9d00ff5d58"/>
+                <textElement>
+                    <font fontName="Consolas"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="24" splitType="Stretch">
+            <textField pattern="¤ #,##0.00">
+                <reportElement x="408" y="0" width="152" height="24" uuid="b8d62795-d8b5-493d-ba6d-711343096794"/>
+                <textElement>
+                    <font fontName="Consolas" size="16"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{Amount_1}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="396" y="0" width="143" height="1" uuid="96386cc1-c195-46b7-9290-d30fb4fd5bfc"/>
+            </line>
+            <staticText>
+                <reportElement x="347" y="0" width="61" height="24" uuid="ab40d552-2d58-43db-bf08-8340e6593904"/>
+                <textElement>
+                    <font fontName="Consolas" size="16"/>
+                </textElement>
+                <text><![CDATA[Total:]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5b05899a-9e90-468e-a2ca-3b00cb5e1cf7">
+    <property name="ireport.zoom" value="2.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="Full_Name" class="java.lang.String"/>
+    <parameter name="SY" class="java.lang.String"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT Student_Info_idStudent_Info,School_Year_idSchool_Year FROM dcaa_databse.billing where School_Year_idSchool_Year=4 AND Student_Info_idStudent_Info='2018000002' limit 1]]>
+    </queryString>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <variable name="Amount_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+        <variableExpression><![CDATA[$F{Amount}]]></variableExpression>
+    </variable>
+    <variable name="variable1" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="102" splitType="Stretch">
+            <staticText>
+                <reportElement x="127" y="0" width="357" height="32" uuid="45950ab4-6b62-4f36-96da-4adc7224df85"/>
+                <textElement>
+                    <font fontName="Consolas" size="20"/>
+                </textElement>
+                <text><![CDATA[Digos Central Adventist Academy]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="179" y="67" width="197" height="25" uuid="a600f466-084c-46b3-8c8a-0c3ea64a7e4f"/>
+                <textElement>
+                    <font fontName="Consolas" size="18"/>
+                </textElement>
+                <text><![CDATA[Billing Statements]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="24" width="148" height="20" uuid="48a21eec-e253-4443-8cd2-6f1a29c2d513"/>
+                <text><![CDATA[Lapu-Lapu Extension, Digos City]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="223" y="35" width="110" height="20" uuid="185e5165-13d4-4828-8274-31890be107f7"/>
+                <text><![CDATA[Tel No. (082) 553-3172]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="175" y="47" width="201" height="20" uuid="b7f4ea30-f52f-4864-b78e-053f7442f106"/>
+                <text><![CDATA[ digoscentral.adventistacademy@yahoo.com]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="50" splitType="Stretch"/>
+        <band height="34"/>
+    </detail>
+    <summary>
+        <band height="24" splitType="Stretch"/>
+    </summary>
+</jasperReport>
