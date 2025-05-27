@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2121a063-7952-4a8c-b94c-ae7ce5e5a200">
+    <property name="ireport.zoom" value="3.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["C:\\Users\\Jamie\\Documents\\NetBeansProjects\\DCAA_BILLING\\src\\reports\\"]]></defaultValueExpression>
+    </parameter>
+    <parameter name="To" class="java.lang.String"/>
+    <parameter name="From" class="java.lang.String"/>
+    <parameter name="parameter2" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[SELECT * FROM dcaa_databse.invoice]]>
+    </queryString>
+    <field name="idINVOICE" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Value" class="java.lang.Double">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Particulars" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Category_of_charges_idCategory_of_charges" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="Student_Info_idStudent_Info" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="OrNum" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="DATE" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="School_Year_idSchool_Year" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="UseAccounts_idUseAccounts" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <variable name="Value_1" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{Value}]]></variableExpression>
+    </variable>
+    <variable name="Value_2" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{Value}]]></variableExpression>
+    </variable>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="86" splitType="Stretch">
+            <staticText>
+                <reportElement x="157" y="47" width="201" height="20" uuid="de775d0d-b8b5-459c-aebb-ca6cf4d0cc3a"/>
+                <text><![CDATA[ digoscentral.adventistacademy@yahoo.com]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="185" y="58" width="197" height="25" uuid="af442f9e-06b9-4451-a20d-873d76299687"/>
+                <textElement>
+                    <font fontName="Consolas" size="18"/>
+                </textElement>
+                <text><![CDATA[Invoice Report]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="182" y="24" width="148" height="20" uuid="16c78b7c-fff9-4cfb-8b22-a8ea0e831126"/>
+                <text><![CDATA[Lapu-Lapu Extension, Digos City]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="205" y="35" width="110" height="20" uuid="116697e2-bb12-41c9-9af4-71c7bd6987a6"/>
+                <text><![CDATA[Tel No. (082) 553-3172]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="109" y="0" width="357" height="32" uuid="ed8526ba-91f2-4ee4-8962-11aea578297a"/>
+                <textElement>
+                    <font fontName="Consolas" size="20"/>
+                </textElement>
+                <text><![CDATA[Digos Central Adventist Academy]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="26" splitType="Stretch">
+            <textField>
+                <reportElement x="182" y="3" width="76" height="20" uuid="dfd3a213-93f7-4d3e-9f6b-44c523a301f8"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$P{From}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="3" width="252" height="20" uuid="9e286ae2-1d68-4893-af9b-a1e5309a2e5a"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$P{To}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="148" y="3" width="39" height="13" uuid="3c0dff08-4c1a-44be-9f13-96a0fc466998"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[From:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="260" y="3" width="39" height="13" uuid="a635a721-6dd0-4eed-989f-8f636d558912"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[To:]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="16" splitType="Stretch">
+            <staticText>
+                <reportElement x="25" y="3" width="25" height="13" uuid="fa18b301-d86c-4d33-9d86-be903763cfe2"/>
+                <text><![CDATA[Date]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="78" y="2" width="71" height="13" uuid="fba94805-7583-4400-a851-30f5a5bb6553"/>
+                <text><![CDATA[Student ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="154" y="2" width="71" height="13" uuid="aac72594-c007-4ad1-901c-2e7ed057a79b"/>
+                <text><![CDATA[Reference No.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="231" y="2" width="71" height="13" uuid="45793c12-fd56-401a-92e6-724a14cda187"/>
+                <text><![CDATA[Transaction]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="376" y="2" width="71" height="13" uuid="8680b4ba-df2f-4d97-afbd-4d0c444a87fd"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Payment]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="452" y="2" width="71" height="13" uuid="ee646e16-897e-4f18-8943-f858d1d0a1ec"/>
+                <text><![CDATA[Receipt No.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="324" y="2" width="61" height="13" uuid="29fbc20d-d4ee-4894-8a0c-da124e38d47b"/>
+                <text><![CDATA[Grade Level]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="12" splitType="Stretch">
+            <textField pattern="MM/dd/yyyy">
+                <reportElement x="25" y="0" width="53" height="11" uuid="7a7edd4c-3070-4765-a670-e887dc5bd719"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{DATE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="157" y="0" width="73" height="11" uuid="4d5d0e58-9f9b-4017-b7bf-50a6c07a2dab"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Particulars}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="452" y="0" width="100" height="11" uuid="23d2b596-c342-4f41-a2b0-95e8a326d68d"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{OrNum}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="376" y="0" width="75" height="11" uuid="35a53ac0-1f48-46dd-9cec-ad03261681f9"/>
+                <textElement textAlignment="Center">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Value}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="78" y="0" width="76" height="11" uuid="9b87d2ef-b2ac-4d50-9574-0ea9abc1bee9"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Student_Info_idStudent_Info}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement x="231" y="0" width="68" height="11" uuid="21c34213-f237-4534-b0ad-34f77bf0f5f2"/>
+                <subreportParameter name="IdCategory">
+                    <subreportParameterExpression><![CDATA[$F{Category_of_charges_idCategory_of_charges}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="ORnum"/>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Resibo_subreport1.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement x="0" y="0" width="25" height="11" uuid="d5c2ad65-9254-4710-8c4f-642aa7ae400c"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement x="302" y="0" width="74" height="11" uuid="db90f149-3362-4d51-9020-2ed2aaf3df62"/>
+                <subreportParameter name="StudentID">
+                    <subreportParameterExpression><![CDATA[$F{Student_Info_idStudent_Info}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Report_Invoice_subreport_GradeLevel.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement x="254" y="2" width="36" height="14" uuid="290ba4f2-3f1d-4104-9b4a-db191a9a3390"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="220" y="2" width="39" height="14" uuid="76aa7191-ea1d-4b6d-af08-6e11d71c0af7"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Page]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="26" splitType="Stretch">
+            <staticText>
+                <reportElement x="273" y="3" width="80" height="13" uuid="11b5c6a7-721f-4b0f-b685-837295a4acbc"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Total Collection:]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="3" width="552" height="1" uuid="dcbd29e5-8512-4b47-ac9c-1f9948bd13b8"/>
+            </line>
+            <textField pattern="¤ #,##0.00">
+                <reportElement x="360" y="3" width="192" height="20" uuid="27f022f5-db84-4872-a526-a1007429c589"/>
+                <textFieldExpression><![CDATA[$V{Value_2}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+</jasperReport>
